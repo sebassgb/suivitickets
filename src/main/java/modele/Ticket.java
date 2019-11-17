@@ -15,7 +15,7 @@ public class Ticket {
 //    private String ticket_trace;
     private String ticket_desc;
     private Integer ticket_status;
-
+    private Utilisateur ticket_responsable;
     public Ticket(Integer ticket_id, String ticket_appnom, String ticket_date, String ticket_desc, Integer ticket_status) {
         this.ticket_id = ticket_id;
         this.ticket_appnom = ticket_appnom;
@@ -70,5 +70,19 @@ public class Ticket {
 
     public void setTicket_status(Integer ticket_status) {
         this.ticket_status = ticket_status;
+    }
+
+    public Utilisateur getTicket_responsable() {
+        return ticket_responsable;
+    }
+
+    public void setTicket_responsable(Utilisateur ticket_responsable) {
+        if(this.ticket_aut != true) {
+            this.ticket_responsable = ticket_responsable;
+            this.ticket_aut = true;
+        }
+        else {
+            System.out.printf("APRES");
+        }
     }
 }

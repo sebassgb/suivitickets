@@ -65,78 +65,71 @@ public class Facade {
         //=========================
 
         BigProjets=new ArrayList<Projet>();
-        Projet p1 = new Projet("toto", Applications);
+        Projet p1 = new Projet(m1, Applications);
         projets.add(p1);
 
-
-//        Projet p1=new Projet("composants","voyage dans la 4eme dimension");
-//        Projet p2=new Projet("week end","coming soon");
-//        Projet p3=new Projet("lundi","déjà?");
-
-        projets.add(p1);
-//        projets.add(p2);
-//        projets.add(p3);
+        //
 
         // m1 responsabl de p1
-        m1.getResponsable().add(p1);
-        p1.setDirigePar(m1);
+        p1.setProj_responsable(m1); // gestionaire
+        a1.setApp_responsable(m4); // admin
+        t1.setTicket_responsable(m2);
+        // Client apres;
 
-        // participe à p2
-        m1.getParticipe().add(p2);
-        p2.getContributionDe().add(m1);
+
 
     }
 
 
-    public Membre findMembre(String l, String p) {
-        Query q = em.createQuery("From Membre m" + " where m.login=:log and m.motdepasse=:mdp");
-        q.setParameter("log",l);
-        q.setParameter("mdp", p);//proteger des injections
-        try {
-            return (Membre) q.getSingleResult();
-        } catch (NoResultException nre){
-            return null;
-        }
-        /*
-        for (Membre m:membres) {
-            if ((m.getLogin().equals(l))
-                    &&(m.getMotdepasse().equals(p))) {
+    public Utilisateur findUtilisateur(String l, String p) {
+//        Query q = em.createQuery("From Membre m" + " where m.login=:log and m.motdepasse=:mdp");
+//        q.setParameter("log",l);
+//        q.setParameter("mdp", p);//proteger des injections
+//        try {
+//            return (Membre) q.getSingleResult();
+//        } catch (NoResultException nre){
+//            return null;
+//        }
+
+        for (Utilisateur m:Utilisateurs) {
+            if ((m.getUsername().equals(l))
+                    &&(m.getPassword().equals(p))) {
                 return  m;
             }
         }
-        return null;*/
+        return null;
     }
 
-    public Membre findMembre(String l) {
-        return em.find(Membre.class,l);
-        /*
-        for (Membre m:membres) {
-            if (m.getLogin().equals(l)) {
+    public Utilisateur findMembre(String l) {
+//        return em.find(Membre.class,l);
+
+        for (Utilisateur m:Utilisateurs) {
+            if (m.getUsername().equals(l)) {
                 return  m;
             }
         }
-        return null;*/
+        return null;
     }
 
 
 
     public Collection<String> findResponsable(String l) {
-        Membre m=findMembre(l);
+        Utilisateur m=findMembre(l);
         Collection<String> resp = new ArrayList<>();
         if (m!=null) {
             for (Projet p:m.getResponsable()){
-                resp.add(p.getIntituleP()+ "(" + p.getDescriptionP()+ ")");
+                resp.add(p.getProj_responsable()+ "(" + p.getProj_desc()+ ")");
             }
         }
         return resp;
     }
 
-    public Collection<String> findParticipe(String l) {
-        Membre m=findMembre(l);
+    public Collection<String> findContribution(String l) {
+        Utilisateur m=findMembre(l);
         Collection<String> part = new ArrayList<>();
         if (m!=null) {
-            for (Projet p:m.getParticipe()){
-                part.add(p.getIntituleP()+ "(" + p.getDescriptionP()+ ")");
+            for (Projet p:m.getResponsable()){
+                part.add(p.getProj_contribution()+ "(" + p.getProj_desc()+ ")");
             }
         }
         return part;
@@ -152,14 +145,14 @@ public class Facade {
 
 
     public Projet findProjet(String ip){
-        return em.find(Projet.class,ip);
-        /*
+//        return em.find(Projet.class,ip);
+
         for (Projet p:projets) {
-            if (p.getIntituleP().equals(ip)) {
+            if (p.getProj_id().equals(ip)) {
                 return p;
             }
         }
-        return null;*/
+        return null;
     }
 
 
@@ -172,30 +165,30 @@ public class Facade {
 //    }
 
     public List<Projet> getProjets() {
-        return em.createQuery("From Projet p")
-                .getResultList();
-      //  return projets;
+//        return em.createQuery("From Projet p")
+//                .getResultList();
+      return projets;
     }
     //
-@Transactional
-    public void nouveauProjet(String ls, String intitule, String description) {//modification dans le BD sans les droits
-        Membre m = em.find(Membre.class,ls);
-        Projet p = new Projet();
-        p.setDirigePar(m);
-        p.setIntituleP(intitule);
-        p.setDescriptionP(description);
-
-        em.persist(p);
-    }
+//@Transactional
+//    public void nouveauProjet(String ls, String intitule, String description) {//modification dans le BD sans les droits
+//        Membre m = em.find(Membre.class,ls);
+//        Projet p = new Projet();
+//        p.setDirigePar(m);
+//        p.setIntituleP(intitule);
+//        p.setDescriptionP(description);
+//
+//        em.persist(p);
+//    }
 //
 //    public Collection<Projet> filtrer (String motif){
 //        Query q = em.createQuery("From Projet p where p.intituleP like :pattern ");
 //        q.setParameter("pattern", "%" + motif + "%");
 //        return q.getResultList();
 //    }
-    public void newTicket(){
-
-    }
+//    public void newTicket(){
+//
+//    }
 //@Transactional
 //    public void changerSurnom(String ls, String nouveau) {
 //        //Membre m = em.find(Membre.class, ls);

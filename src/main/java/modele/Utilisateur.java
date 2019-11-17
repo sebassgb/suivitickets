@@ -21,8 +21,6 @@ public class Utilisateur {
 
     @ManyToMany
     private Collection<Projet> contribution;
-    @OneToMany(mappedBy = "utilisateur")
-    private Collection<CompetenceMembre> competences;
 
 
     // Constructeurs
@@ -79,6 +77,7 @@ public class Utilisateur {
     public void setContribution(Collection<Projet> contribution) {
         this.contribution = contribution;
     }
+
 
 }//Fin class
 

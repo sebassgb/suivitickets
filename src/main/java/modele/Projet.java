@@ -13,7 +13,7 @@ public class Projet {
     private String proj_id;
     private String proj_contribution;
     private String proj_desc;
-    private String proj_responsable;
+    private Utilisateur proj_responsable;
 //    @ManyToOne
 //    private Utilisateur dirigePar;
     @ManyToMany(mappedBy = "participe")
@@ -23,7 +23,7 @@ public class Projet {
 
     // Constructeurs
 
-    public Projet(String proj_responsable, Collection<Application> Application) {
+    public Projet(Utilisateur proj_responsable, Collection<Application> Application) {
         this.proj_responsable = proj_responsable;
         this.Applications = Application;
     }
@@ -56,11 +56,11 @@ public class Projet {
         this.proj_desc = proj_desc;
     }
 
-    public String getProj_responsable() {
+    public Utilisateur getProj_responsable() {
         return proj_responsable;
     }
 
-    public void setProj_responsable(String proj_responsable) {
+    public void setProj_responsable(Utilisateur proj_responsable) {
         this.proj_responsable = proj_responsable;
     }
 

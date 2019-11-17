@@ -16,7 +16,7 @@ public class Service2 {
         Collection<Projet> res=new ArrayList<>();
 
         for (Projet p:facade.getProjets()) {
-            if (p.getIntituleP().contains(motif)) {
+            if (p.getProj_id().contains(motif)) {
                 res.add(p);
             }
         }
