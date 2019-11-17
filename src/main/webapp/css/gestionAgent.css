@@ -1,0 +1,106 @@
+body{
+    font-size: 18px;
+}
+
+#username{
+    width: 20%;
+      height: 27px;
+      margin: 0 auto;
+      border: none; /* <-- This thing here */
+      border:solid 2.5px lightblue;
+      border-radius: 8px;
+}
+
+#password{
+    width: 20%;
+      height: 27px;
+      margin: 0 auto;
+      border: none; /* <-- This thing here */
+      border:solid 2.5px lightblue;
+      border-radius: 8px;
+}
+
+#password:hover{
+    background-color: lightgreen;
+}
+
+#username:hover{
+    background-color: lightgreen;
+}
+
+.createUtilisateur{
+    width: 30%;
+    height: 27px;
+    margin: 0 auto;
+    border: none; /* <-- This thing here */
+    border:solid 2.5px white;
+    background-color: lightseagreen;
+    font-weight: bold;
+    border-radius: 8px;
+    color: white;
+}
+
+.createUtilisateur:hover{
+    background-color: lightgreen;
+}
+
+#form{
+    border:solid 2.5px lightblue;
+    padding: 2.5%;  
+    width: 50%;
+    border-radius: 10px;
+}
+
+.hit-the-floor {
+    color: #fff;
+    font-size: 1.5em;
+    font-weight: bold;
+    font-family: Helvetica;
+    text-shadow: 
+      0 1px 0 #ccc, 
+      0 2px 0 #c9c9c9, 
+      0 3px 0 #bbb, 
+      0 4px 0 #b9b9b9, 
+      0 5px 0 #aaa, 
+      0 6px 1px rgba(0,0,0,.1), 
+      0 0 5px rgba(0,0,0,.1), 
+      0 1px 3px rgba(0,0,0,.3), 
+      0 3px 5px rgba(0,0,0,.2), 
+      0 5px 10px rgba(0,0,0,.25), 
+      0 10px 10px rgba(0,0,0,.2), 
+      0 20px 20px rgba(0,0,0,.15);
+  }
+
+  .logout{
+    width: 12%;
+    height: 27px;
+    margin: 0 auto;
+    border: none; /* <-- This thing here */
+    border:solid 2.5px white;
+    background-color: red;
+    font-weight: bold;
+    border-radius: 8px;
+    color: white;
+  }
+
+  .logout:hover{
+    background-color: lightcoral;
+    
+  }
+
+  .gestionaire{
+    width: 10%;
+    height: 27px;
+    margin: 0 auto;
+    border: none; /* <-- This thing here */
+    border:solid 2.5px white;
+    background-color: orange;
+    font-weight: bold;
+    border-radius: 8px;
+    color: white;
+  }
+
+  .gestionaire:hover{
+    background-color: lightsalmon;
+    
+  }
