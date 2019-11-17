@@ -10,58 +10,73 @@ import java.util.Collection;
 @Entity
 public class Projet {
     @Id
-    private String projet_id;
-    private String projet_desc;
-    @ManyToOne
-    private Utilisateur dirigePar;
+    private String proj_id;
+    private String proj_contribution;
+    private String proj_desc;
+    private String proj_responsable;
+//    @ManyToOne
+//    private Utilisateur dirigePar;
     @ManyToMany(mappedBy = "participe")
-    private Collection<Utilisateur> proj_contribution;
+    private Collection<Utilisateur> Utilisateurs;
+    private Collection<Application> Applications;
 
 
     // Constructeurs
-    public Projet() {
-        this.proj_contribution=new ArrayList<>();
-    }
 
-    public Projet(String intituleP, String descriptionP) {
-        this();
-        this.projet_id = intituleP;
-        this.projet_desc = descriptionP;
+    public Projet(String proj_responsable, Collection<Application> Application) {
+        this.proj_responsable = proj_responsable;
+        this.Applications = Application;
     }
 
 
     // Getters et setters
 
-    public String getIntituleP() {
-        return projet_id;
+
+    public String getProj_id() {
+        return proj_id;
     }
 
-    public void setIntituleP(String intituleP) {
-        this.projet_id = intituleP;
+    public void setProj_id(String proj_id) {
+        this.proj_id = proj_id;
     }
 
-    public String getDescriptionP() {
-        return projet_desc;
-    }
-
-    public void setDescriptionP(String descriptionP) {
-        this.projet_desc = descriptionP;
-    }
-
-    public Utilisateur getDirigePar() {
-        return dirigePar;
-    }
-
-    public void setDirigePar(Utilisateur dirigePar) {
-        this.dirigePar = dirigePar;
-    }
-
-    public Collection<Utilisateur> getContributionDe() {
+    public String getProj_contribution() {
         return proj_contribution;
     }
 
-    public void setContributionDe(Collection<Utilisateur> contributionDe) {
-        this.proj_contribution = contributionDe;
+    public void setProj_contribution(String proj_contribution) {
+        this.proj_contribution = proj_contribution;
     }
 
+    public String getProj_desc() {
+        return proj_desc;
+    }
+
+    public void setProj_desc(String proj_desc) {
+        this.proj_desc = proj_desc;
+    }
+
+    public String getProj_responsable() {
+        return proj_responsable;
+    }
+
+    public void setProj_responsable(String proj_responsable) {
+        this.proj_responsable = proj_responsable;
+    }
+
+    public Collection<Utilisateur> getUtilisateurs() {
+        return Utilisateurs;
+    }
+
+    public void setUtilisateurs(Collection<Utilisateur> utilisateurs) {
+        Utilisateurs = utilisateurs;
+    }
+
+    public Collection<Application> getApplications() {
+        return Applications;
+    }
+
+    public void setApplications(Collection<Application> applications) {
+        Applications = applications;
+    }
 }

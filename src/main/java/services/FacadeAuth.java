@@ -16,8 +16,12 @@ public class FacadeAuth {
     @PostConstruct
     public void peupler() {
         utils=new ArrayList<>();
-        utils.add(new Utilisateur("u1","password","profil1"));
-        utils.add(new Utilisateur("u2","password","profil2"));
+        utils.add(new Utilisateur("u1","password","gestionaire"));
+        utils.add(new Utilisateur("u2","password","agent"));
+        utils.add(new Utilisateur("u3","password","client"));
+        utils.add(new Utilisateur("u4","password","admin"));
+
+
     }
 
     public boolean exists(String id) {

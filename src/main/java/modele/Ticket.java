@@ -2,57 +2,58 @@ package modele;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.util.Date;
 
 @Entity
 public class Ticket {
 
     @Id
-    private String ticket_id;
+    private Integer ticket_id;
     private String ticket_appnom;
-    private String ticket_aut;
+    private Boolean ticket_aut = false;
     private String ticket_date;
-    private String ticket_trace;
+//    private String ticket_trace;
     private String ticket_desc;
-    private String ticket_status;
+    private Integer ticket_status;
 
-    public String getTicketId() {
+    public Ticket(Integer ticket_id, String ticket_appnom, String ticket_date, String ticket_desc, Integer ticket_status) {
+        this.ticket_id = ticket_id;
+        this.ticket_appnom = ticket_appnom;
+        this.ticket_date = ticket_date;
+        this.ticket_desc = ticket_desc;
+        this.ticket_status = ticket_status;
+    }
+
+    public Integer getTicket_id() {
         return ticket_id;
     }
 
-    public void setTicketId(String ticket_id) {
+    public void setTicket_id(Integer ticket_id) {
         this.ticket_id = ticket_id;
     }
 
-    public String getTicketAppnom() {
+    public String getTicket_appnom() {
         return ticket_appnom;
     }
 
-    public void setTicketAppnom(String ticket_appnom) {
+    public void setTicket_appnom(String ticket_appnom) {
         this.ticket_appnom = ticket_appnom;
     }
 
-    public String getTickeAut() {
+    public Boolean getTicket_aut() {
         return ticket_aut;
     }
 
-    public void setTicketAut(String ticket_aut) {
+    public void setTicket_aut(Boolean ticket_aut) {
         this.ticket_aut = ticket_aut;
     }
 
-    public String getTicketDate() {
+    public String getTicket_date() {
         return ticket_date;
     }
 
     public void setTicket_date(String ticket_date) {
         this.ticket_date = ticket_date;
-    }
-
-    public String getTicket_trace() {
-        return ticket_trace;
-    }
-
-    public void setTicket_trace(String ticket_trace) {
-        this.ticket_trace = ticket_trace;
     }
 
     public String getTicket_desc() {
@@ -63,11 +64,11 @@ public class Ticket {
         this.ticket_desc = ticket_desc;
     }
 
-    public String getTicket_status() {
+    public Integer getTicket_status() {
         return ticket_status;
     }
 
-    public void setTicket_status(String ticket_status) {
+    public void setTicket_status(Integer ticket_status) {
         this.ticket_status = ticket_status;
     }
 }
