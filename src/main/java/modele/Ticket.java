@@ -12,7 +12,7 @@ public class Ticket {
     private Boolean ticket_aut = false;
     private String ticket_date;
     private String ticket_title;
-//    private String ticket_trace;
+    private String ticket_trace;
     private String ticket_desc;
     private Integer ticket_status;
     private Utilisateur ticket_responsable;
@@ -92,5 +92,13 @@ public class Ticket {
 
     public void setTicket_title(String ticket_title) {
         this.ticket_title = ticket_title;
+    }
+
+    public String getTicket_trace() {
+        return ticket_trace;
+    }
+
+    public void setTicket_trace(String ticket_trace) {
+        this.ticket_trace = ticket_trace;
     }
 }

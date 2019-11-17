@@ -18,14 +18,24 @@ Bonjour à ${surnom}, vous êtes ${user_id}
     <p>Les tickets resp:
     <ul>
         <c:forEach items="${responsable_ticket}" var="pr">
-            <li>${pr.ticket_id} ${pr.ticket_appnom}</li>
+            <c:if test="${pr.ticket_status == 0}">
+                <li>${pr.ticket_id} ${pr.ticket_appnom}
+            </c:if>
         </c:forEach>
     </ul>
+
 </p>
+    <form>
+        Ticket besoin resolu : <input type="number" name="ticket" placeholder="Id Ticket" required/>  <input type="text" name="date" placeholder="Date" required/>
+        <input type="text" name="commentaire" placeholder="Commentaire" required/>
+        <button type="submit" name="TODO" value="resolu"> Changer!</button>
+    </form>
+
 </c:if>
+<form>
+    <button type="submit" name="TODO" value="noop">
+        Retour</button>
+</form>
 
-
-
-<%--</p>--%>
 </body>
 </html>

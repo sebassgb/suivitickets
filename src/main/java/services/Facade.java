@@ -24,7 +24,7 @@ public class Facade {
         Gestionaire m1=  new Gestionaire("toto",
                 "toto","gestionaire");
         Utilisateurs.add(m1);
-        Agent m2 =  new Agent("tata",
+        Agent m2=  new Agent("tata",
                 "tata","agent");
         Utilisateurs.add(m2);
 
@@ -37,10 +37,12 @@ public class Facade {
 
         //=======================
         Tickets = new ArrayList<Ticket>();
-        Ticket t1 = new Ticket(1,"voiture","13-03-2019","abc",0);
+        Ticket t1 = new Ticket(1,"voiture","13-03-2019","abc",0); // 0 = Non resolu
         Tickets.add(t1);
-        Ticket t2 = new Ticket(2,"plane","13-03-2019","abc",0);
+        Ticket t2 = new Ticket(2,"plane","13-03-2019","abc",1); //  1 = Resolu
         Tickets.add(t2);
+        Ticket t3 = new Ticket(3,"insa","19-03-2019","abc",0); //  1 = Resolu
+        Tickets.add(t3);
 
         //========================
 
@@ -58,6 +60,7 @@ public class Facade {
 
 
         m2.setResponsable_ticket(Tickets);
+        t2.setTicket_status(0);
         //
 //
 //        // m1 responsabl de p1
@@ -88,6 +91,8 @@ public class Facade {
         return null;
     }
 //
+
+
     public Collection<String> findResponsable(String l) {
         Utilisateur m=findMembre(l);
         Collection<String> resp = new ArrayList<>();
@@ -136,8 +141,29 @@ public class Facade {
 //                .getResulconfigtList();
         return projets;
     }
+    public void changeTicketResolu(Integer l){
+        for(Ticket t: Tickets){
+            if(t.getTicket_id().equals(l)){
+                t.setTicket_status(1);
+            }
+            else{
+                continue;
+            }
+        }
+    }
 
-
+    public void changeTicket(Integer l, String date, String commentaire){
+        for(Ticket t: Tickets){
+            if(t.getTicket_id().equals(l)){
+                t.setTicket_status(1);
+                t.setTicket_date(date);
+                t.setTicket_desc(commentaire);
+            }
+            else{
+                continue;
+            }
+        }
+    }
 
 
 }

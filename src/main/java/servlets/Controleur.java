@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet("/Controleur")
@@ -73,34 +74,38 @@ public class Controleur extends HttpServlet {
             }
         }
         else{
-//            String todo = request.getParameter("TODO");
-//            if (todo == null) {
-//                request.getRequestDispatcher("WEB-INF/connexion.jsp").forward(request, response);
-//            }
-//            else {
-//                switch (todo) {
-//                    case "filtrer":
-//                        String filtre  = request.getParameter("filtre");
-//                        request.setAttribute("filtre", filtre);
-//                        request.setAttribute("resfiltre",service2.filter(filtre));
-//                        //service2.filter(filtre);
-//                        request.getRequestDispatcher("WEB-INF/filtre.jsp").forward(request,response);
-//                        break;
-//                    default:
-//                        versPage(request, response);
-//                        break;
-//                }
-//            }
-            System.out.printf("FAIL");
+            // deja connecte
+            String todo = request.getParameter("TODO");
+            switch(todo) {
+                    case "resolu":
+                        Integer t = Integer.parseInt(request.getParameter("ticket"));
+                        String d = request.getParameter("date");
+                        String commentaire = request.getParameter("commentaire");
+                        facade.changeTicketResolu(t);
+                        versPage(request, response);
+                        break;
+                case "charge":
+                        String charges = request.getParameter("charges");
+                         System.out.printf("toto");
+                    case "noop":
+                        request.getSession().invalidate();
+                        request.getRequestDispatcher("WEB-INF/connexion.jsp").forward(request, response);
+                        return;
+                    default:
+                        versPage(request, response);
+            }
          }
     }
 
     private void versPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String l= (String) request.getSession().getAttribute("courant");
-//        Utilisateur m=facade.findMembre(l);
-//        request.setAttribute("surnom",m.getUsername());
-//        request.setAttribute("participe", facade.findParticipe(l));
-//        request.setAttribute("responsable",facade.findResponsable(l));
+        Utilisateur m=facade.findMembre(l);
+        request.setAttribute("surnom",m.getUsername());
+        request.setAttribute("user_id", m.getUser_profil_id());
+        if(m.getUser_profil_id().equals("agent")) {
+            m = (Agent) m;
+            request.setAttribute("responsable_ticket", ((Agent) m).getResponsable_ticket());
+        }
         request.getRequestDispatcher("WEB-INF/home.jsp").forward(request,response);
     }
 
