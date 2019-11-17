@@ -10,67 +10,58 @@ import java.util.Collection;
 @Entity
 public class Projet {
     @Id
-    private String intituleP;
-    private String descriptionP;
+    private String projet_id;
+    private String projet_desc;
     @ManyToOne
-    private Membre dirigePar;
+    private Utilisateur dirigePar;
     @ManyToMany(mappedBy = "participe")
-    private Collection<Membre> contributionDe;
-    @ManyToMany(mappedBy = "requisePour")
-    private Collection<Competence> necessite;
+    private Collection<Utilisateur> proj_contribution;
+
 
     // Constructeurs
     public Projet() {
-        this.contributionDe=new ArrayList<>();
-        this.necessite=new ArrayList<>();
+        this.proj_contribution=new ArrayList<>();
     }
 
     public Projet(String intituleP, String descriptionP) {
         this();
-        this.intituleP = intituleP;
-        this.descriptionP = descriptionP;
+        this.projet_id = intituleP;
+        this.projet_desc = descriptionP;
     }
 
 
     // Getters et setters
 
     public String getIntituleP() {
-        return intituleP;
+        return projet_id;
     }
 
     public void setIntituleP(String intituleP) {
-        this.intituleP = intituleP;
+        this.projet_id = intituleP;
     }
 
     public String getDescriptionP() {
-        return descriptionP;
+        return projet_desc;
     }
 
     public void setDescriptionP(String descriptionP) {
-        this.descriptionP = descriptionP;
+        this.projet_desc = descriptionP;
     }
 
-    public Membre getDirigePar() {
+    public Utilisateur getDirigePar() {
         return dirigePar;
     }
 
-    public void setDirigePar(Membre dirigePar) {
+    public void setDirigePar(Utilisateur dirigePar) {
         this.dirigePar = dirigePar;
     }
 
-    public Collection<Membre> getContributionDe() {
-        return contributionDe;
+    public Collection<Utilisateur> getContributionDe() {
+        return proj_contribution;
     }
 
-    public void setContributionDe(Collection<Membre> contributionDe) {
-        this.contributionDe = contributionDe;
+    public void setContributionDe(Collection<Utilisateur> contributionDe) {
+        this.proj_contribution = contributionDe;
     }
 
-    public Collection<Competence> getNecessite() {
-        return necessite;
-    }
-
-    public void setNecessite(Collection<Competence> necessite) {
-        this.necessite = necessite;
-    }
 }

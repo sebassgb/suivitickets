@@ -8,7 +8,7 @@ public class Autorisation {
 
     @Id
     private String aut_id;//ID pour identifier l'autorisation
-    private String aut_detail;//cette variable permettre décrire les permissions avec cet autorisation
+    private String aut_desc;//cette variable permettre décrire les permissions avec cet autorisation
 
     public String getAut_id() {
         return aut_id;
@@ -19,10 +19,10 @@ public class Autorisation {
     }
 
     public String getAut_detail() {
-        return aut_detail;
+        return aut_desc;
     }
 
     public void setAut_detail(String aut_detail) {
-        this.aut_detail = aut_detail;
+        this.aut_desc = aut_detail;
     }
 }

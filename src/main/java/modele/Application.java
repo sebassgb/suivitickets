@@ -9,6 +9,15 @@ public class Application {
     @Id
     private String app_id;//ID pour identifier l'application
     private String app_nom;//cette variable pour savoir le nom
+    private String app_proj_id;//cette variable pour savoir le nom
+
+    public String getAppProj_id() {
+        return app_proj_id;
+    }
+
+    public void setAppProj_id(String app_proj_id) {
+        this.app_proj_id = app_proj_id;
+    }
 
     public String getApp_id() {
         return app_id;
