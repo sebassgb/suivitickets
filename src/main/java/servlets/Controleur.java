@@ -1,29 +1,39 @@
 package servlets;
 
+import modele.Membre;
+import modele.Projet;
 import modele.Utilisateur;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 import services.Facade;
 import services.Service2;
 
+
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-//@WebServlet("/Controleur")
+@WebServlet("/Controleur")
 public class Controleur extends HttpServlet {
+
     @Autowired
     private Facade facade;
 
     @Autowired
     private Service2 service2;
 
+    /*@Override
+    public void init() throws ServletException {
+        super.init();
+        //facade=new Facade();
+        //facade.init();
+    }*/
     @Override
     public void init(ServletConfig config) throws ServletException {
-        System.out.println("Init controleur");
         super.init(config);
         SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this,config.getServletContext());
     }
@@ -34,77 +44,61 @@ public class Controleur extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String ls=(String) request.
-                getSession().getAttribute("courant");
+        String ls=(String) request.getSession().getAttribute("courant");
 
         if (ls==null) {
-
             String todo = request.getParameter("TODO");
-
             if (todo == null) {
-                request
-                        .getRequestDispatcher("WEB-INF/connexion.jsp")
-                        .forward(request, response);
-            } else {
-//                switch (todo) {
-//                    case "log":
-//                        String l = request.getParameter("login");
-//                        String p = request.getParameter("password");
-//                        Utilisateur m = facade.findMembre(l, p);
-//                        if (m != null) {
-//                            request.getSession().setAttribute("courant", l);
-//                            versPage(request, response);
-//                        } else {
-//                            request.getRequestDispatcher("WEB-INF/connexion.jsp")
-//                                    .forward(request, response);
-//                        }
-//                        break;
-//                }
+                request.getRequestDispatcher("WEB-INF/connexion.jsp").forward(request, response);
             }
+            else {
+                switch (todo) {
+                    case "log":
+                        String l = request.getParameter("login");
+                        String p = request.getParameter("password");
+                        Utilisateur m = facade.findMembre(l, p);
+                        if (m != null) {
+                            request.getSession().setAttribute("courant", l);
+                            versPage(request, response);
+                        } else {
+                            request.getRequestDispatcher("WEB-INF/connexion.jsp").forward(request, response);
+                        }
+                        break;
+                }
 
-        } else {
-            // déjà connecté
-//            String todo = request.getParameter("TODO");
-//
-//            switch (todo) {
-//                case "filtrer" :
-//                    String filtre=request.getParameter("filtre");
-//                    facade.findProjet(filtre);
-//                    request.setAttribute("filtre",filtre);
-//                    request.setAttribute
-//                            ("resfiltre",service2.filtrer(filtre));
-//                    request.getRequestDispatcher("WEB-INF/filtree.jsp")
-//                            .forward(request,response);
-//
-//                    break;
-//
-//                case "ajouterProjet":
-//                    String intitule=request.getParameter("intitule");
-//                    String description= request.getParameter("description");
-//                    facade.nouveauProjet(ls,intitule,description);
-//                    versPage(request, response);
-//                    break;
-//                case "renommer":
-//                    String nouveau = request.getParameter("surnom");
-//                    facade.changerSurnom(ls, nouveau);
-//                    versPage(request,response);
-//                    break;
-//                    default:
-//                    versPage(request,response);
-//
-//            }
-
+            }
         }
-
+        else{
+            String todo = request.getParameter("TODO");
+            if (todo == null) {
+                request.getRequestDispatcher("WEB-INF/connexion.jsp").forward(request, response);
+            }
+            else {
+                switch (todo) {
+                    case "filtrer":
+                        String filtre  = request.getParameter("filtre");
+                        request.setAttribute("filtre", filtre);
+                        request.setAttribute("resfiltre",service2.filter(filtre));
+                        //service2.filter(filtre);
+                        request.getRequestDispatcher("WEB-INF/filtre.jsp").forward(request,response);
+                        break;
+                    default:
+                        versPage(request, response);
+                        break;
+                }
+            }
+         }
     }
 
-private void versPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    String l=(String)request.
-            getSession().getAttribute("courant");
-    Utilisateur m=facade.findMembre(l);
-//    request.setAttribute("details", facade.details(l));
-    request.getRequestDispatcher("WEB-INF/page.jsp")
-            .forward(request,response);
-}
+    private void versPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String l= (String) request.getSession().getAttribute("courant");
+//        Utilisateur m=facade.findMembre(l);
+//        request.setAttribute("surnom",m.getUsername());
+//        request.setAttribute("participe", facade.findParticipe(l));
+//        request.setAttribute("responsable",facade.findResponsable(l));
+        request.getRequestDispatcher("WEB-INF/home.jsp").forward(request,response);
+    }
+
+
 
 }
