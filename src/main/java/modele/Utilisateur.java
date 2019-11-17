@@ -16,19 +16,15 @@ public class Utilisateur {
     private String password;
     private String user_profil_id;//Profil de l'utilisateur  que va le donner les autorisations
 
-    @OneToMany(mappedBy = "proj_responsable")
+//    @OneToMany(mappedBy = "proj_responsable")
     private Collection<Projet> responsable;
 
-    @ManyToMany
+//    @ManyToMany
     private Collection<Projet> contribution;
-
 
     // Constructeurs
 
-    public Utilisateur() {
-        responsable=new ArrayList<>();
-        contribution=new ArrayList<>();
-    }
+
 
     public Utilisateur(String username, String password, String user_profil_id) {
         this.username=username;

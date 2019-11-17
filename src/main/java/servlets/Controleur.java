@@ -1,8 +1,6 @@
 package servlets;
 
-import modele.Membre;
-import modele.Projet;
-import modele.Utilisateur;
+import modele.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 import services.Facade;
@@ -27,7 +25,7 @@ public class Controleur extends HttpServlet {
     private Service2 service2;
 
     /*@Override
-    public void init() throws ServletException {
+//    public void init() throws ServletException {
         super.init();
         //facade=new Facade();
         //facade.init();
@@ -59,6 +57,12 @@ public class Controleur extends HttpServlet {
                         Utilisateur m = facade.findMembre(l, p);
                         if (m != null) {
                             request.getSession().setAttribute("courant", l);
+                            request.setAttribute("surnom", m.getUsername());
+                            request.setAttribute("user_id", m.getUser_profil_id());
+                            if(m.getUser_profil_id().equals("agent")) {
+                                m = (Agent) m;
+                                request.setAttribute("responsable_ticket", ((Agent) m).getResponsable_ticket());
+                            }
                             versPage(request, response);
                         } else {
                             request.getRequestDispatcher("WEB-INF/connexion.jsp").forward(request, response);
@@ -69,24 +73,25 @@ public class Controleur extends HttpServlet {
             }
         }
         else{
-            String todo = request.getParameter("TODO");
-            if (todo == null) {
-                request.getRequestDispatcher("WEB-INF/connexion.jsp").forward(request, response);
-            }
-            else {
-                switch (todo) {
-                    case "filtrer":
-                        String filtre  = request.getParameter("filtre");
-                        request.setAttribute("filtre", filtre);
-                        request.setAttribute("resfiltre",service2.filter(filtre));
-                        //service2.filter(filtre);
-                        request.getRequestDispatcher("WEB-INF/filtre.jsp").forward(request,response);
-                        break;
-                    default:
-                        versPage(request, response);
-                        break;
-                }
-            }
+//            String todo = request.getParameter("TODO");
+//            if (todo == null) {
+//                request.getRequestDispatcher("WEB-INF/connexion.jsp").forward(request, response);
+//            }
+//            else {
+//                switch (todo) {
+//                    case "filtrer":
+//                        String filtre  = request.getParameter("filtre");
+//                        request.setAttribute("filtre", filtre);
+//                        request.setAttribute("resfiltre",service2.filter(filtre));
+//                        //service2.filter(filtre);
+//                        request.getRequestDispatcher("WEB-INF/filtre.jsp").forward(request,response);
+//                        break;
+//                    default:
+//                        versPage(request, response);
+//                        break;
+//                }
+//            }
+            System.out.printf("FAIL");
          }
     }
 

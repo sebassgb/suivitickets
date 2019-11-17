@@ -8,7 +8,7 @@ import java.util.Collection;
 @Entity
 public class Projet {
     @Id
-    private String proj_id;
+    private String proj_id ;
     private String proj_contribution;
     private String proj_desc;
     private Utilisateur proj_responsable;

@@ -12,27 +12,20 @@
     <title>La page de ${surnom}</title>
 </head>
 <body>
-Bonjour à ${surnom}
+Bonjour à ${surnom}, vous êtes ${user_id}
 
-<p>Les proj resp:
+<c:if test="${user_id.equals('agent')}">
+    <p>Les tickets resp:
     <ul>
-    <c:forEach items="${responsable}" var="pr">
-        <li>${pr.intituleP} (${pr.descriptionP})</li>
-    </c:forEach>
-</ul>
+        <c:forEach items="${responsable_ticket}" var="pr">
+            <li>${pr.ticket_id} ${pr.ticket_appnom}</li>
+        </c:forEach>
+    </ul>
 </p>
+</c:if>
 
-<p>Les proj partcipe:
-<ul>
-    <c:forEach items="${participe}" var="pr">
-        <li>${pr.intituleP} (${pr.descriptionP})</li>
-    </c:forEach>
-</ul>
 
-</p>
-<form>
-    Filtre : <input type="text" name="filtre">
-    <button type="submit" name="TODO" value="filtrer">Filtrer</button>
-</form>
+
+<%--</p>--%>
 </body>
 </html>

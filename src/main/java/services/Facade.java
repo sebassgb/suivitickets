@@ -21,16 +21,17 @@ public class Facade {
     @PostConstruct
     public void init(){
         Utilisateurs=new ArrayList<>();
-        Utilisateur m1=new Utilisateur("toto",
+        Gestionaire m1=  new Gestionaire("toto",
                 "toto","gestionaire");
         Utilisateurs.add(m1);
-        Utilisateur m2=new Utilisateur("tata",
+        Agent m2 =  new Agent("tata",
                 "tata","agent");
         Utilisateurs.add(m2);
-        Utilisateur m3=new Utilisateur("tete",
+
+        Client m3=  new Client("tete",
                 "tete","client");
         Utilisateurs.add(m3);
-        Utilisateur m4=new Utilisateur("tutu",
+        Admin m4=  new Admin("tutu",
                 "tutu","admin");
         Utilisateurs.add(m4);
 
@@ -55,6 +56,8 @@ public class Facade {
         Projet p1 = new Projet(m1, Applications);
         BigProjets.add(p1);
 
+
+        m2.setResponsable_ticket(Tickets);
         //
 //
 //        // m1 responsabl de p1
@@ -130,7 +133,7 @@ public class Facade {
 
     public List<Projet> getProjets() {
 //        return em.createQuery("From Projet p")
-//                .getResultList();
+//                .getResulconfigtList();
         return projets;
     }
 

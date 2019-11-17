@@ -11,6 +11,7 @@ public class Ticket {
     private String ticket_appnom;
     private Boolean ticket_aut = false;
     private String ticket_date;
+    private String ticket_title;
 //    private String ticket_trace;
     private String ticket_desc;
     private Integer ticket_status;
@@ -83,5 +84,13 @@ public class Ticket {
         else {
             System.out.printf("APRES");
         }
+    }
+
+    public String getTicket_title() {
+        return ticket_title;
+    }
+
+    public void setTicket_title(String ticket_title) {
+        this.ticket_title = ticket_title;
     }
 }
