@@ -2,6 +2,7 @@ package modele;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.util.Random;
 
 @Entity
 public class Ticket {
@@ -16,12 +17,13 @@ public class Ticket {
     private String ticket_desc;
     private Integer ticket_status; // 0 = Non resolu, 1 = resolu
     private Utilisateur ticket_responsable;
-    public Ticket(Integer ticket_id, String ticket_appnom, String ticket_date, String ticket_desc, Integer ticket_status) {
-        this.ticket_id = ticket_id;
+    public Ticket(String ticket_appnom, String ticket_date, String ticket_desc) {
+        Random rand = new Random();
+        this.ticket_id = rand.nextInt(100);
         this.ticket_appnom = ticket_appnom;
         this.ticket_date = ticket_date;
         this.ticket_desc = ticket_desc;
-        this.ticket_status = ticket_status;
+        this.ticket_status = 0;
     }
 
     public Integer getTicket_id() {

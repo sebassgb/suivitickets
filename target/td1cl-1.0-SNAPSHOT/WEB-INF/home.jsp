@@ -48,7 +48,7 @@
                             </c:when>
                             <c:otherwise>
                                 <script type="text/javascript">
-                                    window.alert("Ce ticket a pris en charge");
+                                    alert("Ce ticket a pris en charge");
                                 </script>
                             </c:otherwise>
 

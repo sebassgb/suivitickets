@@ -41,12 +41,12 @@ public class Facade {
 
         //=======================
         Tickets = new ArrayList<Ticket>();
-        Ticket t1 = new Ticket(1,"voiture","13-03-2019","abc",0); // 0 = Non resolu
-        Tickets.add(t1);
-        Ticket t2 = new Ticket(2,"plane","13-03-2019","abc",0); //  1 = Resolu
-        Tickets.add(t2);
-        Ticket t3 = new Ticket(3,"insa","19-03-2019","abc",0); //  1 = Resolu
-        Tickets.add(t3);
+       // Ticket t1 = new Ticket(1,"voiture","13-03-2019","abc",0); // 0 = Non resolu
+        //Tickets.add(t1);
+        //Ticket t2 = new Ticket(2,"plane","13-03-2019","abc",0); //  1 = Resolu
+        //Tickets.add(t2);
+        //Ticket t3 = new Ticket(3,"insa","19-03-2019","abc",0); //  1 = Resolu
+        //Tickets.add(t3);
 
         //========================
 
@@ -62,8 +62,6 @@ public class Facade {
         Projet p1 = new Projet(m1, Applications);
         BigProjets.add(p1);
 
-
-        m2.setResponsable_ticket(Tickets);
 //        t2.setTicket_status(0);
         //
 //
@@ -197,5 +195,14 @@ public class Facade {
     public void libererTicket(Ticket ticket_liberer) {
         ticket_liberer.setTicket_responsable(null);
         ticket_liberer.setTicket_aut(false);
+    }
+
+
+    public void addTicket(Ticket ticketClient) {
+        Tickets.add(ticketClient);
+        System.out.println(Tickets.get(0).getTicket_id());
+        System.out.println(Tickets.get(0).getTicket_appnom());
+        System.out.println(Tickets.get(0).getTicket_date());
+        System.out.println(Tickets.get(0).getTicket_desc());
     }
 }

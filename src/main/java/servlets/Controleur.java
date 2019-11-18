@@ -60,9 +60,8 @@ public class Controleur extends HttpServlet {
                             request.getSession().setAttribute("courant", l);
                             request.setAttribute("surnom", m.getUsername());
                             request.setAttribute("user_id", m.getUser_profil_id());
-                            if(m.getUser_profil_id().equals("agent")) {
-                                m = (Agent) m;
-                                request.setAttribute("responsable_ticket", ((Agent) m).getResponsable_ticket());
+                            if(m.getUser_profil_id().equals("client")) {//provisionnel
+                                m = (Client) m;
                             }
                             versPage(request, response);
                         } else {
@@ -107,6 +106,16 @@ public class Controleur extends HttpServlet {
                         }
                         versPage(request, response);
                         break;
+                        //Function for create a new ticket for the client
+                case "createTicket":
+                    String date_ticket = request.getParameter("date_ticket").toString();
+                    String title_ticket = request.getParameter("title_ticket");
+                    String desc_ticket = request.getParameter("desc_ticket").toString();
+                    String name_application = request.getParameter("name_application");
+                    Ticket ticketClient = new Ticket(name_application, date_ticket, desc_ticket);
+                    facade.addTicket(ticketClient);
+                    versPage(request, response);
+                    break;
                     case "noop":
                         HttpSession session = request.getSession(false);
                         System.out.printf(String.valueOf(request.getSession()));
@@ -115,6 +124,10 @@ public class Controleur extends HttpServlet {
                         }
                         request.getRequestDispatcher("WEB-INF/connexion.jsp").forward(request, response);
                         break;
+                case "ticketDepose":
+                    request.getRequestDispatcher("WEB-INF/statusTicket.jsp").forward(request, response);
+                    break;
+
                     default:
                         versPage(request, response);
             }
@@ -130,7 +143,7 @@ public class Controleur extends HttpServlet {
             m = (Agent) m;
             request.setAttribute("responsable_ticket", ((Agent) m).getResponsable_ticket());
         }
-        request.getRequestDispatcher("WEB-INF/home.jsp").forward(request,response);
+        request.getRequestDispatcher("WEB-INF/createTicket.jsp").forward(request,response);
 
     }
 

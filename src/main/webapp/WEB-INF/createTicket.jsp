@@ -6,8 +6,10 @@
     <title>Créer Ticket</title>
 </head>
 <body>
-        <a href="login.html"><button class="logout">Fermer la session</button></a>
-        <a href="statusTicket.html"><button class="statusTicket">Tickets déposés</button></a>
+<form method="post">
+        <button class="logout" name="TODO" value="noop">Fermer la session</button>
+        <button class="statusTicket" name="TODO" value="ticketDepose">Tickets déposés</button>
+</form>
 
 <center><h1 class="hit-the-floor">Créer un ticket de maintenance</h1></center>
 <center><form method="post" id="form">
@@ -19,7 +21,7 @@
         <OPTION>Apple
         <OPTION selected>Huaweii
         </SELECT><br/><br/>
-    <button type="submit" class="envoyerTicket">Envoyer ticket</button>
+    <button type="submit" class="envoyerTicket" name="TODO" value="createTicket">Envoyer ticket</button>
 </form></center>
 </body>
 </html>
