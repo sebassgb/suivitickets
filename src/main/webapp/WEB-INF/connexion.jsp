@@ -10,7 +10,7 @@
 <center><h2>Sebastian Giraldo, Hai Dinh</h2></center>
 <center><form method="post" id="form">
     Username : <input type="text" name="login" id="username"/><br/><br/>
-    Password : <input type="text" name="password" id="password"/><br/><br/>
+    Password : <input type="password" name="password" id="password"/><br/><br/>
     <button type="submit" class="signin" name="TODO" value="log">Se logguer</button>
 </form></center>
 </body>

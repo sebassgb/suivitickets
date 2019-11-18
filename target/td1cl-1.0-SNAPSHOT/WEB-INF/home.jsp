@@ -21,28 +21,27 @@ Bonjour à ${surnom}, vous êtes ${user_id}
             <c:if test="${pr.ticket_status == 0}">
                 <li>${pr.ticket_id} ${pr.ticket_appnom}
                 <form method="post">
-
                     <p>
                         <select name="role">
-                            <option value="OK${pr.ticket_id}"> Prendre en charge</option>
-                            <option value=False> Liberer</option>
+                            <option value="${pr.ticket_id}OK${surnom}"> Prendre en charge</option>
+                            <option value="${pr.ticket_id}"> Liberer</option>
                         </select>
                         <button type="submit" name="TODO" value="charge"> Submmit </button>
                     </p>
                 </form>
-
+                <c:if test="${pr.ticket_aut == true}">
+                    <form>
+                        Ticket besoin resolu : <input type="number" name="ticket" placeholder="Id Ticket" value="${pr.ticket_id}" required/>  <input type="text" name="date" placeholder="Date" required/>
+                        <input type="text" name="commentaire" placeholder="Commentaire" required/>
+                        <button type="submit" name="TODO" value="resolu"> Changer!</button>
+                    </form>
+                </c:if>
                 </li>
             </c:if>
         </c:forEach>
     </ul>
 
 </p>
-
-    <form>
-        Ticket besoin resolu : <input type="number" name="ticket" placeholder="Id Ticket" required/>  <input type="text" name="date" placeholder="Date" required/>
-        <input type="text" name="commentaire" placeholder="Commentaire" required/>
-        <button type="submit" name="TODO" value="resolu"> Changer!</button>
-    </form>
 
 </c:if>
 <form>

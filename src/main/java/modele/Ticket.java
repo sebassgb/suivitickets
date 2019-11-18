@@ -9,12 +9,12 @@ public class Ticket {
     @Id
     private Integer ticket_id;
     private String ticket_appnom;
-    private Boolean ticket_aut = false;
+    private Boolean ticket_aut = false; // false = permettre de prendre en charge
     private String ticket_date;
     private String ticket_title;
     private String ticket_trace;
     private String ticket_desc;
-    private Integer ticket_status;
+    private Integer ticket_status; // 0 = Non resolu, 1 = resolu
     private Utilisateur ticket_responsable;
     public Ticket(Integer ticket_id, String ticket_appnom, String ticket_date, String ticket_desc, Integer ticket_status) {
         this.ticket_id = ticket_id;
@@ -77,12 +77,13 @@ public class Ticket {
     }
 
     public void setTicket_responsable(Utilisateur ticket_responsable) {
-        if(this.ticket_aut != true) {
+        if(!this.ticket_aut) { // check the ticket authentification: if ticket_aut = false , prendre en charge
             this.ticket_responsable = ticket_responsable;
-            this.ticket_aut = true;
+            this.ticket_aut = true; // to block the another
         }
         else {
             System.out.printf("APRES");
+            System.out.printf("\n");
         }
     }
 

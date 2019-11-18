@@ -85,14 +85,37 @@ public class Controleur extends HttpServlet {
                         versPage(request, response);
                         break;
                     case "charge":
-                        String ticket_id = request.getParameter("role");
-                        facade.changeTicketResponsable(ticket_id);
-
+                        String ticket_information = request.getParameter("role");
+                        if(ticket_information.contains("OK")){
+                            String[] split = ticket_information.split("OK");
+                            Ticket ticket_responsable = facade.findTicketByID(Integer.parseInt(split[0]));
+                            Utilisateur responsable = facade.findMembre(split[1]);
+//                            System.out.println(ticket_responsable.getTicket_aut());
+                            if(!facade.checkAuthentificationTicket(ticket_responsable)){
+                                facade.changeTicketPrendreEnCharge(ticket_responsable, responsable);
+//                                request.setAttribute("acceptResoudre", true );
+                            }
+                            else {
+                                System.out.printf("CANNOT PRENDRE EN CHARGE, IL FAULT LE LIBERER");
+                                System.out.printf("\n");
+                            }
+                        } else {
+                            Ticket ticket_liberer = facade.findTicketByID(Integer.parseInt(ticket_information));
+                            if(facade.checkAuthentificationTicket(ticket_liberer)){
+                                facade.libererTicket(ticket_liberer);
+                            }
+                        }
                         versPage(request, response);
+                        break;
                     case "noop":
-                        request.getSession().invalidate();
+                        HttpSession session = request.getSession(false);
+                        if (session !=null){
+                            session.setMaxInactiveInterval(1);
+                        }
+//                        System.out.printf(String.valueOf(request.getSession()));
+//                        request.getSession().invalidate();
                         request.getRequestDispatcher("WEB-INF/connexion.jsp").forward(request, response);
-                        return;
+//                        return;
                     default:
                         versPage(request, response);
             }
@@ -109,8 +132,7 @@ public class Controleur extends HttpServlet {
             request.setAttribute("responsable_ticket", ((Agent) m).getResponsable_ticket());
         }
         request.getRequestDispatcher("WEB-INF/home.jsp").forward(request,response);
+
     }
-
-
 
 }

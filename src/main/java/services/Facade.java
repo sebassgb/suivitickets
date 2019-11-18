@@ -39,7 +39,7 @@ public class Facade {
         Tickets = new ArrayList<Ticket>();
         Ticket t1 = new Ticket(1,"voiture","13-03-2019","abc",0); // 0 = Non resolu
         Tickets.add(t1);
-        Ticket t2 = new Ticket(2,"plane","13-03-2019","abc",1); //  1 = Resolu
+        Ticket t2 = new Ticket(2,"plane","13-03-2019","abc",0); //  1 = Resolu
         Tickets.add(t2);
         Ticket t3 = new Ticket(3,"insa","19-03-2019","abc",0); //  1 = Resolu
         Tickets.add(t3);
@@ -60,13 +60,13 @@ public class Facade {
 
 
         m2.setResponsable_ticket(Tickets);
-        t2.setTicket_status(0);
+//        t2.setTicket_status(0);
         //
 //
 //        // m1 responsabl de p1
         p1.setProj_responsable(m1); // gestionaire
         a1.setApp_responsable(m4); // admin
-        t1.setTicket_responsable(m2);
+        m2.setResponsable_ticket(Tickets);
 //        // Client apres;
     }
 //
@@ -165,21 +165,32 @@ public class Facade {
         }
     }
 
+
+
     public Ticket findTicketByID(Integer l){
-
-    }
-    public  void changeTicketResponsable(String l){
-          if(l.contains("OK")){
-              //prendre en charge
-             Integer ticket_id = Integer.parseInt(l.replace("OK", ""));
-              System.out.printf(ticket_id);
-//             Ticket t  = findTicketByID(ticket_id);
-//             t.setTicket_responsable();
-          }
-          else{
-                //liberer
-          }
+        for(Ticket t: Tickets){
+            if(t.getTicket_id().equals(l)){
+                return t;
+            }
+        }
+        return null;
     }
 
+    public boolean checkAuthentificationTicket(Ticket t){
+        // true = interdire de prendre en charge
+        // false =  permettre de prendre en charge
+        if(!t.getTicket_aut()) {
+            return false; // permettre de prendre en charge
+        } else{ return  true;}
+    }
 
+
+    public void changeTicketPrendreEnCharge(Ticket ticket_responsable, Utilisateur responsable) {
+        ticket_responsable.setTicket_responsable(responsable);
+    }
+
+    public void libererTicket(Ticket ticket_liberer) {
+        ticket_liberer.setTicket_responsable(null);
+        ticket_liberer.setTicket_aut(false);
+    }
 }
