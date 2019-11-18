@@ -1,7 +1,8 @@
 body{
     font-size: 18px;
+    font-weight: bold;
+    background-color: rgba(219, 229, 233, 0.753);
 }
-
 #username{
     width: 20%;
       height: 27px;
