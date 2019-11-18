@@ -59,16 +59,18 @@ public class Controleur extends HttpServlet {
                             request.getSession().setAttribute("courant", l);
                             request.setAttribute("surnom", m.getUsername());
                             request.setAttribute("user_id", m.getUser_profil_id());
-                            if (m.getUser_profil_id().equals("client")) {//provisionnel
-                                m = (Client) m;
-
+//                            if (m.getUser_profil_id().equals("client")) {//provisionnel
+//                                m = (Client) m;
                                 if (m.getUser_profil_id().equals("agent")) {
                                     m = (Agent) m;
                                     request.setAttribute("responsable_ticket", ((Agent) m).getResponsable_ticket());
                                 } else if (m.getUser_profil_id().equals("gestionaire")) {
                                     request.setAttribute("list_agent", ((Gestionaire) m).getAgent_responsable());
                                     request.getRequestDispatcher("WEB-INF/gestionAgent.jsp").forward(request, response);
-                                }
+                                } else if(m.getUser_profil_id().equals("client")) {
+                                  /// POUR TOI
+
+                                } 
                                 versPage(request, response);
 
                             } else {
@@ -79,7 +81,6 @@ public class Controleur extends HttpServlet {
 
                 }
             }
-        }
         else{
             // deja connecte
             String todo = request.getParameter("TODO");
@@ -88,7 +89,7 @@ public class Controleur extends HttpServlet {
                         Integer t = Integer.parseInt(request.getParameter("ticket"));
                         String d = request.getParameter("date");
                         String commentaire = request.getParameter("commentaire");
-                        facade.changeTicketResolu(t);
+                        facade.changeTicketResolu(t, d, commentaire);
                         versPage(request, response);
                         break;
                     case "charge":
@@ -114,23 +115,25 @@ public class Controleur extends HttpServlet {
                         versPage(request, response);
                         break;
                         //Function for create a new ticket for the client
-                case "createTicket":
-                    String date_ticket = request.getParameter("date_ticket").toString();
-                    String title_ticket = request.getParameter("title_ticket");
-                    String desc_ticket = request.getParameter("desc_ticket").toString();
-                    String name_application = request.getParameter("name_application");
-                    Ticket ticketClient = new Ticket(name_application, date_ticket, desc_ticket);
-                    facade.addTicket(ticketClient);
-                    versPage(request, response);
-                    break;
-                    case "noop":
-                        HttpSession session = request.getSession(false);
-                        System.out.printf(String.valueOf(request.getSession()));
-                        if (session !=null){
-                            session.invalidate();
-                        }
-                        request.getRequestDispatcher("WEB-INF/connexion.jsp").forward(request, response);
+                    case "createTicket":
+                        String date_ticket = request.getParameter("date_ticket").toString();
+                        String title_ticket = request.getParameter("title_ticket");
+                        String desc_ticket = request.getParameter("desc_ticket").toString();
+                        String name_application = request.getParameter("name_application");
+                        Ticket ticketClient = new Ticket(name_application, date_ticket, desc_ticket);
+                        facade.addTicket(ticketClient);
+                        versPage(request, response);
                         break;
+
+                    case "noop":
+                            HttpSession session = request.getSession(false);
+                            System.out.printf(String.valueOf(request.getSession()));
+                            if (session !=null){
+                                session.invalidate();
+                            }
+                            request.getRequestDispatcher("WEB-INF/connexion.jsp").forward(request, response);
+                            break;
+
                 case "ticketDepose":
                     request.getRequestDispatcher("WEB-INF/statusTicket.jsp").forward(request, response);
                     break;
@@ -157,9 +160,9 @@ public class Controleur extends HttpServlet {
             request.setAttribute("responsable_ticket", ((Agent) m).getResponsable_ticket());
             request.getRequestDispatcher("WEB-INF/home.jsp").forward(request,response);
         } else if(m.getUser_profil_id().equals("gestionaire")){
-            request.getRequestDispatcher("WEB-INF/gestionAgent.jsp").forward(request,response);
+            request.setAttribute("list_agent", ((Gestionaire) m).getAgent_responsable());
+            request.getRequestDispatcher("WEB-INF/gestionAgent.jsp").forward(request, response);
         }
-
 
     }
 
