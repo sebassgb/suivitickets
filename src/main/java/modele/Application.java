@@ -3,28 +3,31 @@ package modele;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.util.Collection;
+import java.util.Random;
 
 @Entity
 public class Application {
 
     @Id
-    private String app_id;//ID pour identifier l'application
+    private Integer app_id;//ID pour identifier l'application
     private String app_nom;//cette variable pour savoir le nom
     private String app_proj_id;//cette variable pour savoir le nom
     private Utilisateur app_responsable;
     private Collection<Ticket> tickets;
+    Random rand = new Random();
 
     public Application(Collection<Ticket> tickets) {
+        this.app_id = rand.nextInt(100);
         this.tickets = tickets;
     }
 
 
 
-    public String getApp_id() {
+    public Integer getApp_id() {
         return app_id;
     }
 
-    public void setApp_id(String app_id) {
+    public void setApp_id(Integer app_id) {
         this.app_id = app_id;
     }
 

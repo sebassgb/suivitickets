@@ -208,14 +208,12 @@ public class Facade {
         ticket_liberer.setTicket_aut(false);
     }
 
-
     public void addTicket(Ticket ticketClient) {
         Tickets.add(ticketClient);
-        System.out.println(Tickets.get(0).getTicket_client_creator());
-        System.out.println(Tickets.get(0).getTicket_id());
-        System.out.println(Tickets.get(0).getTicket_appnom());
-        System.out.println(Tickets.get(0).getTicket_date());
-        System.out.println(Tickets.get(0).getTicket_desc());
+    }
+
+    public void addApplication(Application newApplication) {
+        Applications.add(newApplication);
     }
 
 
@@ -230,6 +228,10 @@ public class Facade {
             }
         }
             return TicketsClient;
+    }
+
+    public ArrayList<Application> getApplications(){
+        return Applications;
     }
 
     public ArrayList<Ticket> getTickets() {

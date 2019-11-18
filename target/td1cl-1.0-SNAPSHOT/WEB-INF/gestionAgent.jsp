@@ -9,7 +9,7 @@
 
         <form method="post">
             <button class="logout" name="TODO" value="noop">Fermer la session</button>
-            <button class="gestionaire" name="TODO" value="gestionaire">Créer un projet</button></>
+            <button class="gestionaire" name="TODO" value="gestionaire">Créer un projet</button>
         </form>
 
 <center><h1 class="hit-the-floor">Géstion des agents</h1></center>

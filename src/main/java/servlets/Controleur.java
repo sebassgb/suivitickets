@@ -71,6 +71,9 @@ public class Controleur extends HttpServlet {
                                 } else if(m.getUser_profil_id().equals("client")) {
                                   /// POUR TOI
                                     versPage(request, response);
+                                } else if(m.getUser_profil_id().equals("admin")) {
+                                    /// POUR TOI
+                                    request.getRequestDispatcher("WEB-INF/applications.jsp").forward(request, response);
                                 }
                                 versPage(request, response);
 
@@ -125,6 +128,16 @@ public class Controleur extends HttpServlet {
                         facade.addTicket(ticketClient);
                         versPage(request, response);
                         break;
+                case "createApplication":
+                    String app_responsable = request.getParameter("app_responsable");
+                    String app_proj_id = request.getParameter("app_proj_id").toString();
+                    String app_nom = request.getParameter("app_nom");
+                    Utilisateur responsable_application=facade.findMembre(app_responsable);
+                    Application applicationPetite = new Application(facade.getTickets());
+                    facade.addApplication(applicationPetite);
+                    request.setAttribute("applications_created", facade.getApplications());
+                    versPage(request, response);
+                    break;
 
                     case "noop":
                             HttpSession session = request.getSession(false);
@@ -197,6 +210,9 @@ public class Controleur extends HttpServlet {
         else if(m.getUser_profil_id().equals("client")){
 
             request.getRequestDispatcher("WEB-INF/createTicket.jsp").forward(request, response);
+        }
+        else if(m.getUser_profil_id().equals("admin")){
+            request.getRequestDispatcher("WEB-INF/applications.jsp").forward(request, response);
         }
 
     }
