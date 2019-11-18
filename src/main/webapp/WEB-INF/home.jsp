@@ -44,9 +44,9 @@ Bonjour à ${surnom}, vous êtes ${user_id}
 </p>
 
 </c:if>
-<form>
-    <button type="submit" name="TODO" value="noop">
-        Retour</button>
+<form method="post">
+    <button type="submit"s name="TODO" value="noop">
+        Log Out</button>
 </form>
 
 </body>

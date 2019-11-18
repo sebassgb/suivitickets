@@ -109,13 +109,12 @@ public class Controleur extends HttpServlet {
                         break;
                     case "noop":
                         HttpSession session = request.getSession(false);
+                        System.out.printf(String.valueOf(request.getSession()));
                         if (session !=null){
-                            session.setMaxInactiveInterval(1);
+                            session.invalidate();
                         }
-//                        System.out.printf(String.valueOf(request.getSession()));
-//                        request.getSession().invalidate();
                         request.getRequestDispatcher("WEB-INF/connexion.jsp").forward(request, response);
-//                        return;
+                        break;
                     default:
                         versPage(request, response);
             }
