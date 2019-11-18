@@ -6,9 +6,11 @@
     <title>Liste des utilisateurs</title>
 </head>
 <body>
-        <a href="login.html"><button class="logout">Fermer la session</button></a>
-        <a href="admin.html"><button class="utilisateurs">Créer utilisateurs</button></a>
-        <a href="applications.html"><button class="applications">Applications</button></a>
+<form method="post">
+    <button class="logout" name="TODO" value="noop">Fermer la session</button>
+        <button class="utilisateurs">Créer utilisateurs</button>
+        <button class="applications">Applications</button>
+</form>
 
 <center><h1 class="hit-the-floor">Liste des utilisateurs</h1></center>
 

@@ -6,6 +6,11 @@
     <title>Gérer les applications</title>
 </head>
 <body>
+<form method="post">
+    <button class="logout" name="TODO" value="noop">Fermer la session</button>
+    <button class="utilisateurs">Utilisateurs</button>
+    <button class="applications">Créer utilisateur</button>
+</form>
         <a href="login.html"><button class="logout">Fermer la session</button></a>
         <a href="utilisateur.html"><button class="utilisateurs">Utilisateurs</button></a>
         <a href="admin.html"><button class="applications">Créer utilisateur</button></a>

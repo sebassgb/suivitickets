@@ -8,7 +8,7 @@
 <body>
         <form method="post">
             <button class="logout" name="TODO" value="noop">Fermer la session</button>
-            <button class="gestionAgent" name="TODO" value="agent   ">Agents</button></>
+            <button class="gestionAgent" name="TODO" value="agent">Agents</button>
         </form>
 
 <center><h1 class="hit-the-floor">Créer un projet</h1></center>

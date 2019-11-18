@@ -18,13 +18,16 @@
         <center><form method="post" id="form">
     Responsable du projet : <input type="text" name="" id="resp_proj"/><br/><br/>
     Description du projet : <textarea name="desc_proj" id="desc_proj" cols="30" rows="5"></textarea><br/><br/>
-    Application dans le projet: <SELECT name="app_proj_id" id="app_proj_id" size="1"><br/><br/>
-        <OPTION>app01
-        <OPTION>app02
-        <OPTION selected>app03
-        <OPTION>app04
-        </SELECT><br/><br/>
-    <button type="submit" class="createProjet">Créer projet</button>
+
+<%--    Application dans le projet: <SELECT name="app_proj_id" id="app_proj_id" size="1"><br/><br/>--%>
+<%--        <OPTION>app01--%>
+<%--        <OPTION>app02--%>
+<%--        <OPTION selected>app03--%>
+<%--        <OPTION>app04--%>
+<%--        </SELECT><br/><br/>--%>
+    
+
+            <button type="submit" class="createProjet">Créer projet</button>
 </form></center>
 </body>
 </html>
