@@ -41,12 +41,16 @@ public class Facade {
 
         //=======================
         Tickets = new ArrayList<Ticket>();
-//        Ticket t1 = new Ticket(1,"voiture","13-03-2019","abc",0); // 0 = Non resolu
-//        Tickets.add(t1);
-//        Ticket t2 = new Ticket(2,"plane","13-03-2019","abc",0); //  1 = Resolu
-//        Tickets.add(t2);
-//        Ticket t3 = new Ticket(3,"insa","19-03-2019","abc",0); //  1 = Resolu
-//        Tickets.add(t3);
+        Ticket t1 = new Ticket("voiture","13-03-2019","abc");
+        Tickets.add(t1);
+        Ticket t2 = new Ticket("plane","13-04-2019","abc");
+        Tickets.add(t2);
+        Ticket t3 = new Ticket("insa","13-06-2019","abc");
+        Tickets.add(t3);
+        t1.setTicket_trace("tata");
+        t2.setTicket_trace("tata");
+        t1.setTicket_responsable(m2);
+
 
         //========================
 
@@ -146,12 +150,13 @@ public class Facade {
 //                .getResulconfigtList();
         return projets;
     }
-    public void changeTicketResolu(Integer l,  String d, String commentaire){
+    public void changeTicketResolu(Integer l,  String d, String commentaire, String nom){
         for(Ticket t: Tickets){
             if(t.getTicket_id().equals(l)){
                 t.setTicket_status(1);
                 t.setTicket_date(d);
                 t.setTicket_desc(commentaire);
+                t.setTicket_responsable(findMembre(nom));
             }
             else{
                 continue;
@@ -210,5 +215,7 @@ public class Facade {
         System.out.println(Tickets.get(0).getTicket_desc());
     }
 
-
+    public ArrayList<Ticket> getTickets() {
+        return Tickets;
+    }
 }

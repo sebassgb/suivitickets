@@ -16,6 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Collection;
 
 @WebServlet("/Controleur")
 public class Controleur extends HttpServlet {
@@ -59,14 +61,13 @@ public class Controleur extends HttpServlet {
                             request.getSession().setAttribute("courant", l);
                             request.setAttribute("surnom", m.getUsername());
                             request.setAttribute("user_id", m.getUser_profil_id());
-//                            if (m.getUser_profil_id().equals("client")) {//provisionnel
-//                                m = (Client) m;
                                 if (m.getUser_profil_id().equals("agent")) {
                                     m = (Agent) m;
                                     request.setAttribute("responsable_ticket", ((Agent) m).getResponsable_ticket());
                                 } else if (m.getUser_profil_id().equals("gestionaire")) {
                                     request.setAttribute("list_agent", ((Gestionaire) m).getAgent_responsable());
                                     request.getRequestDispatcher("WEB-INF/gestionAgent.jsp").forward(request, response);
+
                                 } else if(m.getUser_profil_id().equals("client")) {
                                   /// POUR TOI
 
@@ -89,7 +90,8 @@ public class Controleur extends HttpServlet {
                         Integer t = Integer.parseInt(request.getParameter("ticket"));
                         String d = request.getParameter("date");
                         String commentaire = request.getParameter("commentaire");
-                        facade.changeTicketResolu(t, d, commentaire);
+                        String nom = request.getParameter("surnom");
+                        facade.changeTicketResolu(t, d, commentaire, nom);
                         versPage(request, response);
                         break;
                     case "charge":
@@ -98,13 +100,11 @@ public class Controleur extends HttpServlet {
                             String[] split = ticket_information.split("OK");
                             Ticket ticket_responsable = facade.findTicketByID(Integer.parseInt(split[0]));
                             Utilisateur responsable = facade.findMembre(split[1]);
-//                            System.out.println(ticket_responsable.getTicket_aut());
                             if(!facade.checkAuthentificationTicket(ticket_responsable)){
                                 facade.changeTicketPrendreEnCharge(ticket_responsable, responsable);
-//                                request.setAttribute("acceptResoudre", true );
                             }
                             else {
-                                //
+                                    //
                             }
                         } else {
                             Ticket ticket_liberer = facade.findTicketByID(Integer.parseInt(ticket_information));
@@ -127,7 +127,6 @@ public class Controleur extends HttpServlet {
 
                     case "noop":
                             HttpSession session = request.getSession(false);
-                            System.out.printf(String.valueOf(request.getSession()));
                             if (session !=null){
                                 session.invalidate();
                             }
@@ -137,9 +136,27 @@ public class Controleur extends HttpServlet {
                 case "ticketDepose":
                     request.getRequestDispatcher("WEB-INF/statusTicket.jsp").forward(request, response);
                     break;
-                    case "agent":
-                            String agent_select = request.getParameter("agent_select");
-                            System.out.print(agent_select);
+
+                 case "agent":
+                            String agent_select_username = request.getParameter("agent_select");
+                            Utilisateur agent_select =  facade.findMembre(agent_select_username);
+
+                            // tim trong dong tickets xem then ticket nao co t.responsable = agent_select
+
+                            ArrayList<Ticket> Tickets = facade.getTickets();
+                            ArrayList<Ticket> ticket_pris_en_charge = new ArrayList<Ticket>();
+                            ArrayList<Ticket> ticket_resolu = new ArrayList<Ticket>();
+                            for(Ticket ticket_check: Tickets){
+                                if( ticket_check.getTicket_trace() == agent_select.getUsername()){
+                                    ticket_resolu.add(ticket_check); // resolu
+                                }
+                                if( ticket_check.getTicket_responsable() == agent_select ){
+                                    ticket_pris_en_charge.add(ticket_check);
+                                }
+
+                            }
+                            request.setAttribute("ticket_pris_en_charge", ticket_pris_en_charge);
+                            request.setAttribute("ticket_resolu", ticket_resolu);
                             versPage(request, response);
                         break;
                     default:

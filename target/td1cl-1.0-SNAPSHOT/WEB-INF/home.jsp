@@ -40,13 +40,12 @@
                     <c:choose>
                         <c:when test="${pr.ticket_aut == true &&  pr.ticket_responsable.getUsername().equals(surnom)}">
                                 <form id="form">
-                                    Ticket besoin resolu : <input class="envoyerTicket"  type="number" name="ticket" placeholder="Id Ticket" value="${pr.ticket_id}" required/>  <input class="envoyerTicket" type="text" name="date" placeholder="Date" required/>
-                                    <input  class="envoyerTicket" type="text" name="commentaire" placeholder="Commentaire" required/>
+                                    Ticket besoin resolu : <input class="envoyerTicket" type="text" name="surnom" value="${surnom}" required> <input class="envoyerTicket"  type="number" name="ticket" placeholder="Id Ticket" value="${pr.ticket_id}" required/>  <input class="envoyerTicket" type="text" name="date" placeholder="Date" required/><input  class="envoyerTicket" type="text" name="commentaire" placeholder="Commentaire" required/>
                                     <button type="submit" name="TODO" value="resolu"> Changer!</button>
                                 </form>
                         </c:when>
                         <c:otherwise>
-                            //
+<%--                            //--%>
                         </c:otherwise>
                     </c:choose>
 
