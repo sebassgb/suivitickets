@@ -1,0 +1,109 @@
+body{
+    font-size: 18px;
+    font-weight: bold;
+}
+
+
+button{
+    width: 12%;
+      height: 27px;
+      margin: 0 auto;
+      border: none; /* <-- This thing here */
+      border:solid 2.5px lightseagreen;
+      border-radius: 8px;
+      font-weight: bold;
+}
+
+button:hover{
+    background-color: lightseagreen;
+    color: white;
+}
+
+
+#form{
+    border:solid 2.5px lightblue;
+    padding: 1.5%;  
+    width: 50%;
+    border-radius: 10px;
+}
+
+.hit-the-floor {
+    color: #fff;
+    font-size: 1.5em;
+    font-weight: bold;
+    font-family: Helvetica;
+    text-shadow: 
+      0 1px 0 #ccc, 
+      0 2px 0 #c9c9c9, 
+      0 3px 0 #bbb, 
+      0 4px 0 #b9b9b9, 
+      0 5px 0 #aaa, 
+      0 6px 1px rgba(0,0,0,.1), 
+      0 0 5px rgba(0,0,0,.1), 
+      0 1px 3px rgba(0,0,0,.3), 
+      0 3px 5px rgba(0,0,0,.2), 
+      0 5px 10px rgba(0,0,0,.25), 
+      0 10px 10px rgba(0,0,0,.2), 
+      0 20px 20px rgba(0,0,0,.15);
+  }
+
+  .logout{
+    width: 10%;
+    height: 27px;
+    margin: 0 auto;
+    border: none; /* <-- This thing here */
+    border:solid 2.5px white;
+    background-color: red;
+    font-weight: bold;
+    border-radius: 8px;
+    color: white;
+  }
+
+
+
+  .logout:hover{
+    background-color: lightcoral;
+    
+  }
+
+  .optionTicket{
+    width: 12%;
+    height: 27px;
+    margin: 0 auto;
+    border: none; /* <-- This thing here */
+    border:solid 2.5px white;
+    background-color: rgb(37, 128, 128);
+    font-weight: bold;
+    border-radius: 8px;
+    color: white;
+}
+
+.envoyerTicket{
+    width: 18%;
+    height: 27px;
+    margin: 0 auto;
+    border: none; /* <-- This thing here */
+    border:solid 2.5px black;
+    background-color: lightseagreen;
+    font-weight: bold;
+    border-radius: 8px;
+    color: black;
+}
+
+li {
+	list-style-type: none;
+	counter-increment: repas; /* on incrémente le compteur à chaque nouveau li */
+	margin-bottom: 10px;
+}
+li:before {
+	content: counter(repas); /* on affiche le compteur */
+	padding: 5px 15px 5px;
+	margin-right: 8px;
+	vertical-align: top;
+	background: #678;
+	-moz-border-radius: 60px;
+	border-radius: 60px;
+	font-weight: bold;
+	font-size: 0.8em;
+	color: white;		
+}
