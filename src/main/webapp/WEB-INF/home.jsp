@@ -45,16 +45,15 @@
                                     <button type="submit" name="TODO" value="resolu"> Changer!</button>
                                 </form>
                         </c:when>
-<%--                        <c:when test="${pr.ticket_aut == true &&  !pr.ticket_responsable.getUsername().equals(surnom)}">--%>
-<%--                            <p> MESSAGE</p>--%>
-<%--                        </c:when>--%>
+                        <c:otherwise>
+                            //
+                        </c:otherwise>
                     </c:choose>
 
                 </li>
             </c:if>
         </c:forEach>
     </ul>
-
 </p>
 </c:if>
 </body>

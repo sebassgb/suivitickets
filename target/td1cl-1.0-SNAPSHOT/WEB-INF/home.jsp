@@ -44,29 +44,16 @@
                                     <input  class="envoyerTicket" type="text" name="commentaire" placeholder="Commentaire" required/>
                                     <button type="submit" name="TODO" value="resolu"> Changer!</button>
                                 </form>
-<<<<<<< HEAD
-                            </c:when>
-                            <c:otherwise>
-                                <script type="text/javascript">
-                                    alert("Ce ticket a pris en charge");
-                                </script>
-                            </c:otherwise>
-
-                        </c:choose>
-                </c:if>
-=======
                         </c:when>
-<%--                        <c:when test="${pr.ticket_aut == true &&  !pr.ticket_responsable.getUsername().equals(surnom)}">--%>
-<%--                            <p> MESSAGE</p>--%>
-<%--                        </c:when>--%>
+                        <c:otherwise>
+                            //
+                        </c:otherwise>
                     </c:choose>
->>>>>>> c63cdcf2bc38c2357642709a1fb40e5c39a995f6
 
                 </li>
             </c:if>
         </c:forEach>
     </ul>
-
 </p>
 </c:if>
 </body>
