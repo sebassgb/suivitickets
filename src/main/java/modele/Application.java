@@ -19,7 +19,6 @@ public class Application {
     }
 
 
-
     public String getApp_id() {
         return app_id;
     }

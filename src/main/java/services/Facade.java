@@ -60,6 +60,7 @@ public class Facade {
 
         Application a1 = new Application(Tickets);
 
+        a1.setApp_nom("app03");
         Applications.add(a1);
 
 //        =========================
@@ -242,5 +243,35 @@ public class Facade {
 
     public void setBigProjets(ArrayList<Projet> bigProjets) {
         BigProjets = bigProjets;
+    }
+
+    public ArrayList<Application> getApplications() {
+        return Applications;
+    }
+
+    public void setApplications(ArrayList<Application> applications) {
+        Applications = applications;
+    }
+
+    public void creerProjet(String resp_proj, String desc_proj, String[] application_select) {
+
+        Utilisateur resp_proj_utilisateur = findMembre(resp_proj);
+        ArrayList<Application> app = new ArrayList<Application>();
+        for(String l: application_select){
+            app.add(findAppication(l));
+        }
+        Projet projet_new = new Projet(resp_proj_utilisateur, app);
+        projet_new.setProj_desc(desc_proj);
+        BigProjets.add(projet_new);
+
+    }
+
+    private Application findAppication(String l) {
+        for(Application a: Applications){
+            if(a.getApp_nom().equals(l)){
+                return a;
+            }
+        }
+        return null;
     }
 }

@@ -145,8 +145,6 @@ public class Controleur extends HttpServlet {
                             String agent_select_username = request.getParameter("agent_select");
                             Utilisateur agent_select =  facade.findMembre(agent_select_username);
 
-                            // tim trong dong tickets xem then ticket nao co t.responsable = agent_select
-
                             ArrayList<Ticket> Tickets = facade.getTickets();
                             ArrayList<Ticket> ticket_pris_en_charge = new ArrayList<Ticket>();
                             ArrayList<Ticket> ticket_resolu = new ArrayList<Ticket>();
@@ -169,10 +167,17 @@ public class Controleur extends HttpServlet {
                     request.setAttribute("surnom",m.getUsername());
                     request.setAttribute("user_id", m.getUser_profil_id());
 
-                    request.setAttribute("projets",facade.getBigProjets());
+                    request.setAttribute("applications",facade.getApplications());
 
                     request.getRequestDispatcher("WEB-INF/gestionaire.jsp").forward(request, response);
                     break;
+
+                case "creerprojet":
+
+                    String resp_proj = request.getParameter("resp_proj");
+                    String desc_proj = request.getParameter("desc_proj");
+                    String[] application_select = request.getParameterValues("application_select");
+                    facade.creerProjet(resp_proj, desc_proj, application_select);
                 default:
                         versPage(request, response);
             }
