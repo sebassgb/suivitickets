@@ -159,7 +159,17 @@ public class Controleur extends HttpServlet {
                             request.setAttribute("ticket_resolu", ticket_resolu);
                             versPage(request, response);
                         break;
-                    default:
+                case "gestionaire":
+                    String l= (String) request.getSession().getAttribute("courant");
+                    Utilisateur m=facade.findMembre(l);
+                    request.setAttribute("surnom",m.getUsername());
+                    request.setAttribute("user_id", m.getUser_profil_id());
+
+                    request.setAttribute("projets",facade.getBigProjets());
+
+                    request.getRequestDispatcher("WEB-INF/gestionaire.jsp").forward(request, response);
+                    break;
+                default:
                         versPage(request, response);
             }
          }

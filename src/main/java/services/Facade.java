@@ -218,4 +218,12 @@ public class Facade {
     public ArrayList<Ticket> getTickets() {
         return Tickets;
     }
+
+    public ArrayList<Projet> getBigProjets() {
+        return BigProjets;
+    }
+
+    public void setBigProjets(ArrayList<Projet> bigProjets) {
+        BigProjets = bigProjets;
+    }
 }

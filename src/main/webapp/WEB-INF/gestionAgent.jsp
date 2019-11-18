@@ -9,19 +9,11 @@
 
         <form method="post">
             <button class="logout" name="TODO" value="noop">Fermer la session</button>
-            <a href="gestionaire.html"><button class="gestionaire">Créer un projet</button></a>
+            <button class="gestionaire" name="TODO" value="gestionaire">Créer un projet</button></>
         </form>
 
 <center><h1 class="hit-the-floor">Géstion des agents</h1></center>
 <center>
-<%--        Liste des agents : <SELECT name="username" id="username" size="1"><br/><br/>--%>
-<%--            <OPTION>agent01--%>
-<%--            <OPTION>agent02--%>
-<%--            <OPTION selected>agent03--%>
-<%--            <OPTION>agent04--%>
-<%--            </SELECT><br/><br/>--%>
-<%--            Tickets pris en charge <strong>example</strong><br/><br/>--%>
-<%--            Tickets résolues : <strong>example</strong><br/><br/>--%>
     <center><h1 class="hit-the-floor">Bonjour à ${surnom}, vous êtes ${user_id}</h1></center>
 
     Liste des agents :
