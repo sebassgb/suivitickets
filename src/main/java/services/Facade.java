@@ -18,6 +18,8 @@ public class Facade {
     public Facade(){
     }
 
+
+
     @PostConstruct
     public void init(){
         Utilisateurs=new ArrayList<Utilisateur>();
@@ -204,11 +206,28 @@ public class Facade {
 
     public void addTicket(Ticket ticketClient) {
         Tickets.add(ticketClient);
+        System.out.println(Tickets.get(0).getTicket_client_creator());
         System.out.println(Tickets.get(0).getTicket_id());
         System.out.println(Tickets.get(0).getTicket_appnom());
         System.out.println(Tickets.get(0).getTicket_date());
         System.out.println(Tickets.get(0).getTicket_desc());
     }
 
+    //Function that will find the tickets created by the user in session
+    public ArrayList<Ticket> getTicketsClient(String username) {
+        ArrayList<Ticket> TicketsClient = new ArrayList<Ticket>();
+        if(Tickets.size()>0) {
+            for (Ticket t : Tickets) {
+                if (t.getTicket_client_creator().equals(username)) {
+                    TicketsClient.add(t);
+                }
+            }
+        }
+            return TicketsClient;
+    }
+
+    public ArrayList<Ticket> getTickets() {
+        return Tickets;
+    }
 
 }

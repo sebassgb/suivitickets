@@ -6,17 +6,21 @@
     <title>Status Ticket</title>
 </head>
 <body>
+<form method="post">
         <a href="login.html"><button class="logout">Fermer la session</button></a>
-        <a href="createTicket.html"><button class="createTicket">Créer Ticket</button></a>
+        <button class="createTicket" name="TODO">Créer Ticket</button>
+</form>
 
 <center><h1 class="hit-the-floor">Status des tickets déposés</h1></center>
-<center>
-    Date de dépot du ticket : <strong>2019-11-05</strong><br/><br/>
-    Titre du ticket : <strong>App iphone</strong><br/><br/>
-    Description du ticket : <textarea name="desc_ticket" id="desc_ticket" cols="30" rows="5" disabled=true>Ne marche pas</textarea><br/><br/>
-    Nom de l'application : <strong>Apple</strong><br/><br/>
-    <center><button id="ticket_status" disabled=true>Non résolue</button> </center>
+<ul>
+    <c:forEach items="${tickets_deposes}" var="tickets_client">
+            <li>Date de dépot du ticket : <strong>${tickets_client.ticket_date}</strong> </li>
+            <li>Titre du ticket : <strong>${tickets_client.ticket_title}</strong> </li>
+            <li>Description du ticket : <br/><textarea name="desc_ticket" id="desc_ticket" cols="30" rows="5" disabled=true>${tickets_client.ticket_desc}</textarea> </li>
+            <li>Nom de l'application : <strong>${tickets_client.ticket_appnom}</strong> </li>
+            <li>Etat du ticket : <strong>${tickets_client.ticket_status}</strong> </li><br/><br/>
+    </c:forEach>
+</ul>
 
-</center>
 </body>
 </html>

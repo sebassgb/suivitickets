@@ -21,7 +21,6 @@
 
 <center><h1 class="hit-the-floor">Bonjour à ${surnom}, vous êtes ${user_id}</h1></center>
 
-<c:if test="${user_id.equals('agent')}">
     <p class="hit-the-floor">Liste des tickets non résolus :</p>
     <ul>
         <c:forEach items="${responsable_ticket}" var="pr">
@@ -55,6 +54,5 @@
         </c:forEach>
     </ul>
 </p>
-</c:if>
 </body>
 </html>
