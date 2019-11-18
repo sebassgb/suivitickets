@@ -17,15 +17,27 @@ public class Ticket {
     private String ticket_desc;
     private Integer ticket_status; // 0 = Non resolu, 1 = resolu
     private Utilisateur ticket_responsable;
-    public Ticket(String ticket_appnom, String ticket_date, String ticket_desc) {
+    private String ticket_client_creator;
+
+
+
+    public Ticket(String ticket_client_creator, String ticket_appnom, String ticket_date, String ticket_desc) {
         Random rand = new Random();
         this.ticket_id = rand.nextInt(100);
+        this.ticket_client_creator = ticket_client_creator;
         this.ticket_appnom = ticket_appnom;
         this.ticket_date = ticket_date;
         this.ticket_desc = ticket_desc;
         this.ticket_status = 0;
     }
 
+    public String getTicket_client_creator() {
+        return ticket_client_creator;
+    }
+
+    public void setTicket_client_creator(String ticket_client_creator) {
+        this.ticket_client_creator = ticket_client_creator;
+    }
     public Integer getTicket_id() {
         return ticket_id;
     }

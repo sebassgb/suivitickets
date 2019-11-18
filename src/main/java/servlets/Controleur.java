@@ -70,7 +70,7 @@ public class Controleur extends HttpServlet {
 
                                 } else if(m.getUser_profil_id().equals("client")) {
                                   /// POUR TOI
-
+                                    versPage(request, response);
                                 }
                                 versPage(request, response);
 
@@ -120,7 +120,8 @@ public class Controleur extends HttpServlet {
                         String title_ticket = request.getParameter("title_ticket");
                         String desc_ticket = request.getParameter("desc_ticket").toString();
                         String name_application = request.getParameter("name_application");
-                        Ticket ticketClient = new Ticket(name_application, date_ticket, desc_ticket);
+                        String username = request.getParameter("username");
+                        Ticket ticketClient = new Ticket(username, name_application, date_ticket, desc_ticket);
                         facade.addTicket(ticketClient);
                         versPage(request, response);
                         break;
@@ -134,6 +135,9 @@ public class Controleur extends HttpServlet {
                             break;
 
                 case "ticketDepose":
+                    String clientActive= (String) request.getSession().getAttribute("courant");
+                    Utilisateur client=facade.findMembre(clientActive);
+                    request.setAttribute("tickets_deposes", facade.getTicketsClient(client.getUsername()));
                     request.getRequestDispatcher("WEB-INF/statusTicket.jsp").forward(request, response);
                     break;
 
@@ -189,6 +193,10 @@ public class Controleur extends HttpServlet {
         } else if(m.getUser_profil_id().equals("gestionaire")){
             request.setAttribute("list_agent", ((Gestionaire) m).getAgent_responsable());
             request.getRequestDispatcher("WEB-INF/gestionAgent.jsp").forward(request, response);
+        }
+        else if(m.getUser_profil_id().equals("client")){
+
+            request.getRequestDispatcher("WEB-INF/createTicket.jsp").forward(request, response);
         }
 
     }

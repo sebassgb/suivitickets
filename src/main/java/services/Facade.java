@@ -18,6 +18,8 @@ public class Facade {
     public Facade(){
     }
 
+
+
     @PostConstruct
     public void init(){
         Utilisateurs=new ArrayList<Utilisateur>();
@@ -41,11 +43,11 @@ public class Facade {
 
         //=======================
         Tickets = new ArrayList<Ticket>();
-        Ticket t1 = new Ticket("voiture","13-03-2019","abc");
+        Ticket t1 = new Ticket("tete","voiture","13-03-2019","abc");
         Tickets.add(t1);
-        Ticket t2 = new Ticket("plane","13-04-2019","abc");
+        Ticket t2 = new Ticket("tete","plane","13-04-2019","abc");
         Tickets.add(t2);
-        Ticket t3 = new Ticket("insa","13-06-2019","abc");
+        Ticket t3 = new Ticket("tete","insa","13-06-2019","abc");
         Tickets.add(t3);
         t1.setTicket_trace("tata");
         t2.setTicket_trace("tata");
@@ -209,10 +211,25 @@ public class Facade {
 
     public void addTicket(Ticket ticketClient) {
         Tickets.add(ticketClient);
+        System.out.println(Tickets.get(0).getTicket_client_creator());
         System.out.println(Tickets.get(0).getTicket_id());
         System.out.println(Tickets.get(0).getTicket_appnom());
         System.out.println(Tickets.get(0).getTicket_date());
         System.out.println(Tickets.get(0).getTicket_desc());
+    }
+
+
+    //Function that will find the tickets created by the user in session
+    public ArrayList<Ticket> getTicketsClient(String username) {
+        ArrayList<Ticket> TicketsClient = new ArrayList<Ticket>();
+        if(Tickets.size()>0) {
+            for (Ticket t : Tickets) {
+                if (t.getTicket_client_creator().equals(username)) {
+                    TicketsClient.add(t);
+                }
+            }
+        }
+            return TicketsClient;
     }
 
     public ArrayList<Ticket> getTickets() {

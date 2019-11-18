@@ -56,6 +56,16 @@ body{
     border-radius: 8px;
 }
 
+#username
+{
+    width: 20%;
+    height: 27px;
+    margin: 0 auto;
+    border: none; /* <-- This thing here */
+    border:solid 2.5px lightblue;
+    border-radius: 8px;
+}
+
 .hit-the-floor {
     color: #fff;
     font-size: 3em;
