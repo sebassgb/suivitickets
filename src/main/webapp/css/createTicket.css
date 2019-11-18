@@ -20,8 +20,9 @@ input:hover{
 
 body{
     font-size: 18px;
+    font-weight: bold;
+    background-color: rgba(219, 229, 233, 0.753);
 }
-
 #date_ticket{
     width: 20%;
       height: 27px;
