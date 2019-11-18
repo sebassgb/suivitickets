@@ -165,5 +165,21 @@ public class Facade {
         }
     }
 
+    public Ticket findTicketByID(Integer l){
+
+    }
+    public  void changeTicketResponsable(String l){
+          if(l.contains("OK")){
+              //prendre en charge
+             Integer ticket_id = Integer.parseInt(l.replace("OK", ""));
+              System.out.printf(ticket_id);
+//             Ticket t  = findTicketByID(ticket_id);
+//             t.setTicket_responsable();
+          }
+          else{
+                //liberer
+          }
+    }
+
 
 }

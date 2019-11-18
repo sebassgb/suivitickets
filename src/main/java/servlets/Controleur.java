@@ -84,9 +84,11 @@ public class Controleur extends HttpServlet {
                         facade.changeTicketResolu(t);
                         versPage(request, response);
                         break;
-                case "charge":
-                        String charges = request.getParameter("charges");
-                         System.out.printf("toto");
+                    case "charge":
+                        String ticket_id = request.getParameter("role");
+                        facade.changeTicketResponsable(ticket_id);
+
+                        versPage(request, response);
                     case "noop":
                         request.getSession().invalidate();
                         request.getRequestDispatcher("WEB-INF/connexion.jsp").forward(request, response);

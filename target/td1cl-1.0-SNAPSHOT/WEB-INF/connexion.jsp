@@ -5,7 +5,7 @@
     <title>Login</title>
 </head>
 <body>
-<center><img src="../img/insa.jpg" alt="INSA Logo" width="200px" height="100px"></center>
+<center><img src="img/insa.jpg" alt="INSA Logo" width="200px" height="100px"></center>
 <center><h1 class="hit-the-floor">Système de dépôt et de suivi de tickets de maintenance</h1></center>
 <center><h2>Sebastian Giraldo, Hai Dinh</h2></center>
 <center><form method="post" id="form">

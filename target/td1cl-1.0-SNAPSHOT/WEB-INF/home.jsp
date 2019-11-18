@@ -20,11 +20,24 @@ Bonjour à ${surnom}, vous êtes ${user_id}
         <c:forEach items="${responsable_ticket}" var="pr">
             <c:if test="${pr.ticket_status == 0}">
                 <li>${pr.ticket_id} ${pr.ticket_appnom}
+                <form method="post">
+
+                    <p>
+                        <select name="role">
+                            <option value="OK${pr.ticket_id}"> Prendre en charge</option>
+                            <option value=False> Liberer</option>
+                        </select>
+                        <button type="submit" name="TODO" value="charge"> Submmit </button>
+                    </p>
+                </form>
+
+                </li>
             </c:if>
         </c:forEach>
     </ul>
 
 </p>
+
     <form>
         Ticket besoin resolu : <input type="number" name="ticket" placeholder="Id Ticket" required/>  <input type="text" name="date" placeholder="Date" required/>
         <input type="text" name="commentaire" placeholder="Commentaire" required/>
