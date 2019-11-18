@@ -35,6 +35,10 @@ public class Facade {
                 "tutu","admin");
         Utilisateurs.add(m4);
 
+        Agent m5=  new Agent("titi",
+                "titi","agent");
+        Utilisateurs.add(m5);
+
         //=======================
         Tickets = new ArrayList<Ticket>();
         Ticket t1 = new Ticket(1,"voiture","13-03-2019","abc",0); // 0 = Non resolu
@@ -67,6 +71,7 @@ public class Facade {
         p1.setProj_responsable(m1); // gestionaire
         a1.setApp_responsable(m4); // admin
         m2.setResponsable_ticket(Tickets);
+        m5.setResponsable_ticket(Tickets);
 //        // Client apres;
     }
 //

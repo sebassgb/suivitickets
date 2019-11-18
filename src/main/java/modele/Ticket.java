@@ -102,4 +102,6 @@ public class Ticket {
     public void setTicket_trace(String ticket_trace) {
         this.ticket_trace = ticket_trace;
     }
+
+
 }
