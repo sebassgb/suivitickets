@@ -33,18 +33,18 @@
                             <option value="${pr.ticket_id}OK${surnom}"> Prendre en charge</option>
                             <option value="${pr.ticket_id}"> Liberer</option>
                         </select>
-                        <button type="submit" name="TODO" value="charge"> Submit </button>
+                        <button type="submit" name="TODO" value="charge" > Submit </button>
                     </p>
                 </form>
 
-                    <c:if test="${pr.ticket_aut == true}">
-                        <c:choose>
-                            <c:when test="${pr.ticket_responsable.getUsername().equals(surnom)}">
+                    <c:choose>
+                        <c:when test="${pr.ticket_aut == true &&  pr.ticket_responsable.getUsername().equals(surnom)}">
                                 <form id="form">
                                     Ticket besoin resolu : <input class="envoyerTicket"  type="number" name="ticket" placeholder="Id Ticket" value="${pr.ticket_id}" required/>  <input class="envoyerTicket" type="text" name="date" placeholder="Date" required/>
                                     <input  class="envoyerTicket" type="text" name="commentaire" placeholder="Commentaire" required/>
                                     <button type="submit" name="TODO" value="resolu"> Changer!</button>
                                 </form>
+<<<<<<< HEAD
                             </c:when>
                             <c:otherwise>
                                 <script type="text/javascript">
@@ -54,6 +54,13 @@
 
                         </c:choose>
                 </c:if>
+=======
+                        </c:when>
+<%--                        <c:when test="${pr.ticket_aut == true &&  !pr.ticket_responsable.getUsername().equals(surnom)}">--%>
+<%--                            <p> MESSAGE</p>--%>
+<%--                        </c:when>--%>
+                    </c:choose>
+>>>>>>> c63cdcf2bc38c2357642709a1fb40e5c39a995f6
 
                 </li>
             </c:if>

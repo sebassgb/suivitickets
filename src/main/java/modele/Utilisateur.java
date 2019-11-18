@@ -17,7 +17,7 @@ public class Utilisateur {
     private String user_profil_id;//Profil de l'utilisateur  que va le donner les autorisations
 
 //    @OneToMany(mappedBy = "proj_responsable")
-    private Collection<Projet> responsable;
+    private Collection<Utilisateur> responsable;
 
 //    @ManyToMany
     private Collection<Projet> contribution;
@@ -58,11 +58,11 @@ public class Utilisateur {
         this.user_profil_id = user_profil_id;
     }
 
-    public Collection<Projet> getResponsable() {
+    public Collection<Utilisateur> getResponsable() {
         return responsable;
     }
 
-    public void setResponsable(Collection<Projet> responsable) {
+    public void setResponsable(Collection<Utilisateur> responsable) {
         this.responsable = responsable;
     }
 

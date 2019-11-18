@@ -20,7 +20,7 @@ public class Facade {
 
     @PostConstruct
     public void init(){
-        Utilisateurs=new ArrayList<>();
+        Utilisateurs=new ArrayList<Utilisateur>();
         Gestionaire m1=  new Gestionaire("toto",
                 "toto","gestionaire");
         Utilisateurs.add(m1);
@@ -70,6 +70,8 @@ public class Facade {
         a1.setApp_responsable(m4); // admin
         m2.setResponsable_ticket(Tickets);
         m5.setResponsable_ticket(Tickets);
+
+        m1.setAgent_responsable(Utilisateurs);
 //        // Client apres;
     }
 //
@@ -96,26 +98,26 @@ public class Facade {
 //
 
 
-    public Collection<String> findResponsable(String l) {
-        Utilisateur m=findMembre(l);
-        Collection<String> resp = new ArrayList<>();
-        if (m!=null) {
-            for (Projet p:m.getResponsable()){
-                resp.add(p.getProj_responsable()+ "(" + p.getProj_desc()+ ")");
-            }
-        }
-        return resp;
-    }
-    public Collection<String> findContribution(String l) {
-        Utilisateur m=findMembre(l);
-        Collection<String> part = new ArrayList<>();
-        if (m!=null) {
-            for (Projet p:m.getResponsable()){
-                part.add(p.getProj_contribution()+ "(" + p.getProj_desc()+ ")");
-            }
-        }
-        return part;
-    }
+//    public Collection<String> findResponsable(String l) {
+//        Utilisateur m=findMembre(l);
+//        Collection<String> resp = new ArrayList<>();
+//        if (m!=null) {
+//            for (Projet p:m.getResponsable()){
+//                resp.add(p.getProj_responsable()+ "(" + p.getProj_desc()+ ")");
+//            }
+//        }
+//        return resp;
+//    }
+//    public Collection<String> findContribution(String l) {
+//        Utilisateur m=findMembre(l);
+//        Collection<String> part = new ArrayList<>();
+//        if (m!=null) {
+//            for (Projet p:m.getResponsable()){
+//                part.add(p.getProj_contribution()+ "(" + p.getProj_desc()+ ")");
+//            }
+//        }
+//        return part;
+//    }
 
 
 

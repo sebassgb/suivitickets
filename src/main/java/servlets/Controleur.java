@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 @WebServlet("/Controleur")
 public class Controleur extends HttpServlet {
@@ -44,13 +45,11 @@ public class Controleur extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String ls=(String) request.getSession().getAttribute("courant");
-
         if (ls==null) {
             String todo = request.getParameter("TODO");
             if (todo == null) {
                 request.getRequestDispatcher("WEB-INF/connexion.jsp").forward(request, response);
-            }
-            else {
+            } else {
                 switch (todo) {
                     case "log":
                         String l = request.getParameter("login");
@@ -60,16 +59,25 @@ public class Controleur extends HttpServlet {
                             request.getSession().setAttribute("courant", l);
                             request.setAttribute("surnom", m.getUsername());
                             request.setAttribute("user_id", m.getUser_profil_id());
-                            if(m.getUser_profil_id().equals("client")) {//provisionnel
+                            if (m.getUser_profil_id().equals("client")) {//provisionnel
                                 m = (Client) m;
-                            }
-                            versPage(request, response);
-                        } else {
-                            request.getRequestDispatcher("WEB-INF/connexion.jsp").forward(request, response);
-                        }
-                        break;
-                }
 
+                                if (m.getUser_profil_id().equals("agent")) {
+                                    m = (Agent) m;
+                                    request.setAttribute("responsable_ticket", ((Agent) m).getResponsable_ticket());
+                                } else if (m.getUser_profil_id().equals("gestionaire")) {
+                                    request.setAttribute("list_agent", ((Gestionaire) m).getAgent_responsable());
+                                    request.getRequestDispatcher("WEB-INF/gestionAgent.jsp").forward(request, response);
+                                }
+                                versPage(request, response);
+
+                            } else {
+                                request.getRequestDispatcher("WEB-INF/connexion.jsp").forward(request, response);
+                            }
+                            break;
+                        }
+
+                }
             }
         }
         else{
@@ -95,8 +103,7 @@ public class Controleur extends HttpServlet {
 //                                request.setAttribute("acceptResoudre", true );
                             }
                             else {
-                                System.out.printf("CANNOT PRENDRE EN CHARGE, IL FAULT LE LIBERER");
-                                System.out.printf("\n");
+                                //
                             }
                         } else {
                             Ticket ticket_liberer = facade.findTicketByID(Integer.parseInt(ticket_information));
@@ -127,12 +134,18 @@ public class Controleur extends HttpServlet {
                 case "ticketDepose":
                     request.getRequestDispatcher("WEB-INF/statusTicket.jsp").forward(request, response);
                     break;
-
+                    case "agent":
+                            String agent_select = request.getParameter("agent_select");
+                            System.out.print(agent_select);
+                            versPage(request, response);
+                        break;
                     default:
                         versPage(request, response);
             }
          }
     }
+
+
 
     private void versPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String l= (String) request.getSession().getAttribute("courant");
@@ -142,8 +155,11 @@ public class Controleur extends HttpServlet {
         if(m.getUser_profil_id().equals("agent")) {
             m = (Agent) m;
             request.setAttribute("responsable_ticket", ((Agent) m).getResponsable_ticket());
+            request.getRequestDispatcher("WEB-INF/home.jsp").forward(request,response);
+        } else if(m.getUser_profil_id().equals("gestionaire")){
+            request.getRequestDispatcher("WEB-INF/gestionAgent.jsp").forward(request,response);
         }
-        request.getRequestDispatcher("WEB-INF/createTicket.jsp").forward(request,response);
+
 
     }
 
