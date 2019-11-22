@@ -15,20 +15,23 @@
 <center><h1 class="hit-the-floor">Gérer les applications</h1></center>
 <center><form method="post" id="form">
         Responsable de l'application : <input type="text" name="app_responsable" id="app_responsable" value="${surnom}"/><br/><br/>
-        ID du projet de l'application : <input type="text" name="app_proj_id" id="app_proj_id"/><br/><br/>
+    assigner au projet avec ID :
+        <SELECT name="app_proj_id" size="1">
+        <c:forEach items="${projets_created}" var="projet">
+            <OPTION>${projet.getProj_id()}
+        </c:forEach>
+        </SELECT><br/><br/>
         Nom de l'application : <input type="text" name="app_nom" id="app_nom"/><br/><br/>
         <button type="submit" class="createUtilisateur" name="TODO" value="createApplication">Créer application</button>
     </form></center>
 <center>
-    Applications disponibles : <SELECT name="app_id" size="1"><br/><br/>
+    Applications disponibles :<br/><br/><br/><br/>
     <c:forEach items="${applications_created}" var="application">
-    <OPTION selected>${application.app_nom}
-        </SELECT>
 <%--    <button class="logout">Supprimer</button><br/><br/>--%>
-        ID de l'application <strong>${application.app_id}</strong><br/><br/>
-        Responsable de l'application : <strong>${surnom}</strong><br/><br/>
-<%--        ID du projet de l'application : <strong>${application.app_nom}</strong><br/><br/>--%>
-        Nom de l'application : <strong>${application.app_nom}</strong><br/><br/>
+        Application dans le projet avec ID : <strong>${application.getApp_proj_id()}</strong><br/><br/>
+        Responsable de l'application : <strong>${application.getApp_responsable().getUsername()}</strong><br/><br/>
+        Nom de l'application : <strong>${application.getApp_nom()}</strong><br/><br/>
+        ID de l'application : <strong>${application.getApp_id()}</strong><br/><br/><br/><br/>
     </c:forEach>
 </center>
 </body>

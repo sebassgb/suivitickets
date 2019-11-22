@@ -12,15 +12,6 @@ public class Service2 {
     @Autowired
     private Facade facade;
 
-    public Collection<Projet> filter(String motif){
-        Collection<Projet> res = new ArrayList<>();
-        for(Projet p: facade.getProjets()){
-            if(p.getProj_id().contains(motif)){
-                res.add(p);
-            }
-        }
-        return res;
-    }
 
 
 }

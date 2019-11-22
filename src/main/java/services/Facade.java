@@ -12,7 +12,6 @@ import java.util.List;
 public class Facade {
     private ArrayList<Projet> BigProjets;
     private List<Utilisateur> Utilisateurs;
-    private List<Projet> projets;
     private ArrayList<Ticket> Tickets;
     private ArrayList<Application> Applications;
     public Facade(){
@@ -58,16 +57,18 @@ public class Facade {
 
         Applications = new ArrayList<Application>();
 
-        Application a1 = new Application(Tickets);
-
+        Application a1 = new Application("Projet d'option", "3", m4,Tickets);
+        Application a2 = new Application("Projet d'option2", "4", m4,Tickets);
         Applications.add(a1);
+        Applications.add(a2);
 
 //        =========================
 
         BigProjets=new ArrayList<Projet>();
         Projet p1 = new Projet(m1, Applications);
         BigProjets.add(p1);
-
+        Projet p2 = new Projet(m1, Applications);
+        BigProjets.add(p2);
 //        t2.setTicket_status(0);
         //
 //
@@ -127,11 +128,11 @@ public class Facade {
 
 
 
-    public Projet findProjet(String ip){
+    public Projet findProjet(int ip){
 //        return em.find(Projet.class,ip);
 
-        for (Projet p:projets) {
-            if (p.getProj_id().equals(ip)) {
+        for (Projet p:BigProjets) {//attentio modifie
+            if (p.getProj_id() == ip) {
                 return p;
             }
         }
@@ -147,11 +148,6 @@ public class Facade {
 //        }
 //    }
 
-    public List<Projet> getProjets() {
-//        return em.createQuery("From Projet p")
-//                .getResulconfigtList();
-        return projets;
-    }
     public void changeTicketResolu(Integer l,  String d, String commentaire, String nom){
         for(Ticket t: Tickets){
             if(t.getTicket_id().equals(l)){
