@@ -9,7 +9,7 @@
     <form method="post">
         <button class="logout" name="TODO" value="noop">Fermer la session</button>
         <button class="utilisateurs" name="TODO" value="admin">Utilisateurs</button></a>
-        <button class="applications">Applications</button>
+        <button class="applications" name="TODO" value="application">Applications</button>
     </form>
 
 <center><h1 class="hit-the-floor">Créer un utilisateur</h1></center>

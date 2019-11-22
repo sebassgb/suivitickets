@@ -8,8 +8,8 @@
 <body>
 <form method="post">
     <button class="logout" name="TODO" value="noop">Fermer la session</button>
-    <button class="utilisateurs">Utilisateurs</button>
-    <button class="applications">Créer utilisateur</button>
+    <button class="utilisateurs" name="TODO" value="admin">Utilisateurs</button>
+    <button class="applications" name="TODO" value="Utilisateur">Créer utilisateur</button>
 </form>
 
 <center><h1 class="hit-the-floor">Gérer les applications</h1></center>

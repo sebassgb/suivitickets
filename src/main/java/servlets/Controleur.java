@@ -124,9 +124,7 @@ public class Controleur extends HttpServlet {
                         break;
 
                 case "application":
-                    request.setAttribute("applications_created", facade.getApplications());
-                    request.setAttribute("projets_created", facade.getBigProjets());
-                    request.getRequestDispatcher("WEB-INF/applications.jsp").forward(request, response);
+                    Application(request, response);
                     break;
                 case "createApplication":
                     String app_proj_id = request.getParameter("app_proj_id");
@@ -134,11 +132,8 @@ public class Controleur extends HttpServlet {
                     Utilisateur app_responsable=facade.findMembre(request.getParameter("app_responsable"));
                     Application applicationPetite = new Application(app_nom, app_proj_id, app_responsable,facade.getTickets());
                     facade.addApplication(applicationPetite);
-                    request.setAttribute("applications_created", facade.getApplications());
-                    request.setAttribute("projets_created", facade.getBigProjets());
-                    request.getRequestDispatcher("WEB-INF/applications.jsp").forward(request, response);
+                    Application(request, response);
                     break;
-
                     case "noop":
                             HttpSession session = request.getSession(false);
                             if (session !=null){
@@ -225,7 +220,14 @@ public class Controleur extends HttpServlet {
          }
     }
 
-
+    public void Application(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String utilisateurActuelle= (String) request.getSession().getAttribute("courant");
+        Utilisateur UtilisateurActuelle=facade.findMembre(utilisateurActuelle);
+        request.setAttribute("surnom",UtilisateurActuelle.getUsername());
+        request.setAttribute("applications_created", facade.getApplications());
+        request.setAttribute("projets_created", facade.getBigProjets());
+        request.getRequestDispatcher("WEB-INF/applications.jsp").forward(request, response);
+    }
 
     private void versPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String l= (String) request.getSession().getAttribute("courant");
@@ -245,8 +247,8 @@ public class Controleur extends HttpServlet {
             request.setAttribute("list_utilisateurs", facade.getUtilisateurs());
             request.getRequestDispatcher("WEB-INF/utilisateur.jsp").forward(request, response);
         }
-       
 
     }
+
 
 }
