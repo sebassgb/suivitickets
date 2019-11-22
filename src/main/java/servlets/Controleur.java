@@ -64,6 +64,7 @@ public class Controleur extends HttpServlet {
                                     request.getRequestDispatcher("WEB-INF/gestionAgent.jsp").forward(request, response);
                                 } else if(m.getUser_profil_id().equals("client")) {
                                   /// POUR TOI
+                                    request.setAttribute("applications_created", facade.getApplications());
                                     request.getRequestDispatcher("WEB-INF/createTicket.jsp").forward(request, response);
                                 } else if(m.getUser_profil_id().equals("admin")){
                                     request.setAttribute("list_utilisateurs", facade.getUtilisateurs());
@@ -120,6 +121,7 @@ public class Controleur extends HttpServlet {
                         String username = request.getParameter("username");
                         Ticket ticketClient = new Ticket(username, name_application, date_ticket, desc_ticket);
                         facade.addTicket(ticketClient);
+                        request.setAttribute("applications_created", facade.getApplications());
                         versPage(request, response);
                         break;
 
@@ -175,6 +177,7 @@ public class Controleur extends HttpServlet {
                     request.setAttribute("surnom",m.getUsername());
                     request.setAttribute("user_id", m.getUser_profil_id());
                     request.setAttribute("applications",facade.getApplications());
+                    request.setAttribute("applications_created", facade.getApplications());
                     request.getRequestDispatcher("WEB-INF/gestionaire.jsp").forward(request, response);
                     break;
 
@@ -239,9 +242,11 @@ public class Controleur extends HttpServlet {
             request.getRequestDispatcher("WEB-INF/home.jsp").forward(request,response);
         } else if(m.getUser_profil_id().equals("gestionaire")){
             request.setAttribute("list_agent", ((Gestionaire) m).getAgent_responsable());
+            request.setAttribute("applications_created", facade.getApplications());
             request.getRequestDispatcher("WEB-INF/gestionAgent.jsp").forward(request, response);
         }
         else if(m.getUser_profil_id().equals("client")){
+            request.setAttribute("applications_created", facade.getApplications());
             request.getRequestDispatcher("WEB-INF/createTicket.jsp").forward(request, response);
         } else if(m.getUser_profil_id().equals("admin")){
             request.setAttribute("list_utilisateurs", facade.getUtilisateurs());

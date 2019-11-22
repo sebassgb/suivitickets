@@ -16,22 +16,18 @@
  <center><h1 class="hit-the-floor">Bonjour à ${surnom}, vous êtes ${user_id}</h1></center>
 
         <center><form method="post" id="form">
-    Responsable du projet : <input type="text" name="resp_proj"/><br/><br/>
-    Description du projet : <textarea name="desc_proj" cols="30" rows="5"></textarea><br/><br/>
+    Responsable du projet : <input type="text" name="resp_proj" id="resp_proj"/><br/><br/>
+    Description du projet : <textarea name="desc_proj" cols="30" rows="5" id="desc_proj"></textarea><br/><br/>
 
-    Application dans le projet: <SELECT multiple="multiple" name="application_select" ><br/><br/>
-        <OPTION>app01
-        <OPTION>app02
-        <OPTION selected>app03
-        <OPTION>app04
-            <OPTION>app05
-            <OPTION>app06
-            <OPTION>app07
-        </SELECT><br/><br/>
+    Application dans le projet : <SELECT multiple="multiple" name="application_select" id="app_proj"><br/><br/>
+                <c:forEach items="${applications_created}" var="application">
+                <option value="${application}">${application.getApp_nom()}</option>
+                    </c:forEach>
+            </SELECT><br/><br/>
 <%--    Application dans le projet: <c:forEach items="${applications}" var="application">--%>
 <%--            <option value="${application.getApp_nom()}">${application.getApp_nom()}</option>--%>
 <%--        </c:forEach>--%>
-            <button type="submit" name="TODO" value="creerprojet">Créer projet</button>
+            <button class="createProjet" type="submit" name="TODO" value="creerprojet">Créer projet</button>
 </form></center>
 </body>
 </html>

@@ -18,10 +18,11 @@
     Nom de l'utilisateur : <input type="text" name="username" id="username" required value="${surnom}"/><br/><br/>
     Description du ticket : <textarea name="desc_ticket" id="desc_ticket" cols="30" rows="5">l'application ne marche pas comme prevu</textarea><br/><br/>
     Nom de l'application : <SELECT name="name_application" id="name_application" size="1"><br/><br/>
-        <OPTION>Android
-        <OPTION>Apple
-        <OPTION selected>Huaweii
+         <c:forEach items="${applications_created}" var="application">
+             <option value="${application.getApp_nom()}">${application.getApp_nom()}</option>
+         </c:forEach>
         </SELECT><br/><br/>
+
     <button type="submit" class="envoyerTicket" name="TODO" value="createTicket">Envoyer ticket</button>
 </form></center>
 </body>

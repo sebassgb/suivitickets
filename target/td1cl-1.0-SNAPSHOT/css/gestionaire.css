@@ -22,6 +22,14 @@ body{
       border-radius: 8px;
 }
 
+#app_proj{
+    width: 20%;
+    margin: 0 auto;
+    border: none; /* <-- This thing here */
+    border:solid 2.5px lightblue;
+    border-radius: 8px;
+}
+
 #resp_proj:hover{
     background-color: lightgreen;
 }
