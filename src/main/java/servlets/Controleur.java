@@ -120,7 +120,7 @@ public class Controleur extends HttpServlet {
                         String desc_ticket = request.getParameter("desc_ticket").toString();
                         String name_application = request.getParameter("name_application");
                         String username = request.getParameter("username");
-                        Ticket ticketClient = new Ticket(username, name_application, date_ticket, desc_ticket);
+                        Ticket ticketClient = new Ticket(username, name_application, title_ticket, date_ticket, desc_ticket);
                         facade.addTicket(ticketClient);
                         request.setAttribute("applications_created", facade.getApplications());
                         versPage(request, response);

@@ -41,21 +41,18 @@ public class Facade {
                 "titi","agent");
         Utilisateurs.add(m5);
 
-        //=======================
         Tickets = new ArrayList<Ticket>();
-        Ticket t1 = new Ticket("tete","voiture","13-03-2019","abc");
+        Ticket t1 = new Ticket("tete","voiture",  "title 1","13-03-2019","abc");
         Tickets.add(t1);
-        Ticket t2 = new Ticket("tete","plane","13-04-2019","abc");
+        Ticket t2 = new Ticket("tete","plane","title 2","13-04-2019","abc");
         Tickets.add(t2);
-        Ticket t3 = new Ticket("tete","insa","13-06-2019","abc");
+        Ticket t3 = new Ticket("tete","insa","title 3","13-06-2019","abc");
         Tickets.add(t3);
 
         t1.setTicket_trace("tata");
         t2.setTicket_trace("tata");
 //        t1.setTicket_responsable(m2);
 
-
-        //========================
 
         Applications = new ArrayList<Application>();
 

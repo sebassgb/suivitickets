@@ -21,13 +21,14 @@ public class Ticket {
     Random rand = new Random();
 
 
-    public Ticket(String ticket_client_creator, String ticket_appnom, String ticket_date, String ticket_desc) {
+    public Ticket(String ticket_client_creator, String ticket_appnom, String ticket_title, String ticket_date, String ticket_desc) {
         this.ticket_id = rand.nextInt(100);
         this.ticket_client_creator = ticket_client_creator;
         this.ticket_appnom = ticket_appnom;
         this.ticket_date = ticket_date;
         this.ticket_desc = ticket_desc;
         this.ticket_status = 0;
+        this.ticket_title = ticket_title;
     }
 
     public String getTicket_client_creator() {
