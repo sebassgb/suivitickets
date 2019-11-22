@@ -18,7 +18,6 @@ public class Facade {
     }
 
 
-
     @PostConstruct
     public void init(){
         Utilisateurs=new ArrayList<Utilisateur>();

@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.util.Random;
 
-@Entity
 public class Ticket {
 
     private Integer ticket_id;

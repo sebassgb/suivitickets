@@ -7,11 +7,8 @@ import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.Collection;
 
-@Entity
 public class Utilisateur {
 
-
-    @Id
     private String username;//unique
     private String password;
     private String user_profil_id;//Profil de l'utilisateur  que va le donner les autorisations

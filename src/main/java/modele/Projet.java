@@ -6,15 +6,13 @@ import javax.persistence.ManyToMany;
 import java.util.Collection;
 import java.util.Random;
 
-@Entity
 public class Projet {
-    @Id
+
     private int proj_id ;
     private String proj_contribution;
     private String proj_desc;
     private Utilisateur proj_responsable;
 
-    @ManyToMany(mappedBy = "participe")
     private Collection<Utilisateur> Utilisateurs;
     private Collection<Application> Applications;
     Random rand = new Random();
@@ -29,10 +27,6 @@ public class Projet {
     }
 
     // Getters et setters
-
-    public int getProj_id() {
-        return proj_id;
-    }
 
     public void setProj_desc(String proj_desc) {
         this.proj_desc = proj_desc;

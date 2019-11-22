@@ -5,10 +5,8 @@ import javax.persistence.Id;
 import java.util.Collection;
 import java.util.Random;
 
-@Entity
 public class Application {
 
-    @Id
     private int app_id;//ID pour identifier l'application
     private String app_nom;//cette variable pour savoir le nom
     private String app_proj_id;//cette variable pour savoir le nom
