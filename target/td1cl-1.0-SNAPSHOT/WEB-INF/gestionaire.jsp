@@ -8,11 +8,7 @@
 <body>
         <form method="post">
             <button class="logout" name="TODO" value="noop">Fermer la session</button>
-<<<<<<< HEAD
-            <button class="gestionAgent" name="TODO" value="agent">Agents</button></>
-=======
             <button class="gestionAgent" name="TODO" value="agent">Agents</button>
->>>>>>> sebas
         </form>
 
 <center><h1 class="hit-the-floor">Créer un projet</h1></center>
@@ -20,8 +16,7 @@
  <center><h1 class="hit-the-floor">Bonjour à ${surnom}, vous êtes ${user_id}</h1></center>
 
         <center><form method="post" id="form">
-<<<<<<< HEAD
-    Responsable du projet : <input type="text" name="resp_proj""/><br/><br/>
+    Responsable du projet : <input type="text" name="resp_proj"/><br/><br/>
     Description du projet : <textarea name="desc_proj" cols="30" rows="5"></textarea><br/><br/>
 
     Application dans le projet: <SELECT multiple="multiple" name="application_select" ><br/><br/>
@@ -37,20 +32,6 @@
 <%--            <option value="${application.getApp_nom()}">${application.getApp_nom()}</option>--%>
 <%--        </c:forEach>--%>
             <button type="submit" name="TODO" value="creerprojet">Créer projet</button>
-=======
-    Responsable du projet : <input type="text" name="" id="resp_proj"/><br/><br/>
-    Description du projet : <textarea name="desc_proj" id="desc_proj" cols="30" rows="5"></textarea><br/><br/>
-
-<%--    Application dans le projet: <SELECT name="app_proj_id" id="app_proj_id" size="1"><br/><br/>--%>
-<%--        <OPTION>app01--%>
-<%--        <OPTION>app02--%>
-<%--        <OPTION selected>app03--%>
-<%--        <OPTION>app04--%>
-<%--        </SELECT><br/><br/>--%>
-    
-
-            <button type="submit" class="createProjet">Créer projet</button>
->>>>>>> sebas
 </form></center>
 </body>
 </html>

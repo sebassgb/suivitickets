@@ -17,12 +17,13 @@
     Définir username : <input type="text" name="username" id="username"/><br/><br/>
     Définir mot de passe : <input type="text" name="password" id="password"/><br/><br/>
     Définir le rol de l'utilisateur : <SELECT name="user_profil_id" id="user_profil_id" size="1"><br/><br/>
-        <OPTION>client
-        <OPTION>agent
-        <OPTION selected>gestionaire
-        <OPTION selected>admin
+            <option value="gestionaire" selected> Gestionnaire
+            <option value="agent"> Agent
+            <option value="client"> Client
+            <option value="admin"> Administrateur
         </SELECT><br/><br/>
     <button type="submit" class="createUtilisateur">Créer utilisateur</button>
+
 </form></center>
 </body>
 </html>
