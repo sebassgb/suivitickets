@@ -26,19 +26,13 @@ public class Facade {
                 "toto","gestionaire");
 
         Utilisateurs.add(m1);
-        Agent m2 =  new Agent("tata",
-                "tata","agent");
+        Agent m2 =  new Agent("tata", "tata","agent");
         Utilisateurs.add(m2);
-
-        Client m3=  new Client("tete",
-                "tete","client");
+        Client m3=  new Client("tete", "tete","client");
         Utilisateurs.add(m3);
-        Admin m4 =  new Admin("tutu",
-                "tutu","admin");
+        Admin m4 =  new Admin("tutu", "tutu","admin");
         Utilisateurs.add(m4);
-
-        Agent m5=  new Agent("titi",
-                "titi","agent");
+        Agent m5=  new Agent("titi", "titi","agent");
         Utilisateurs.add(m5);
 
         Tickets = new ArrayList<Ticket>();
@@ -51,8 +45,6 @@ public class Facade {
 
         t1.setTicket_trace("tata");
         t2.setTicket_trace("tata");
-//        t1.setTicket_responsable(m2);
-
 
         Applications = new ArrayList<Application>();
 
@@ -62,17 +54,12 @@ public class Facade {
         Applications.add(a1);
         Applications.add(a2);
 
-//        =========================
-
         BigProjets=new ArrayList<Projet>();
         Projet p1 = new Projet(m1, Applications);
         BigProjets.add(p1);
         Projet p2 = new Projet(m1, Applications);
         BigProjets.add(p2);
-//        t2.setTicket_status(0);
-        //
-//
-//        // m1 responsabl de p1
+
         p1.setProj_responsable(m1); // gestionaire
         m2.setResponsable_ticket(Tickets);
         m5.setResponsable_ticket(Tickets);
@@ -102,20 +89,6 @@ public class Facade {
         return null;
     }
 
-
-
-    public Projet findProjet(int ip){
-//        return em.find(Projet.class,ip);
-
-        for (Projet p:BigProjets) {//attentio modifie
-            if (p.getProj_id() == ip) {
-                return p;
-            }
-        }
-        return null;
-    }
-
-
     public void changeTicketResolu(Integer l,  String d, String commentaire, String nom){
         for(Ticket t: Tickets){
             if(t.getTicket_id().equals(l)){
@@ -131,21 +104,6 @@ public class Facade {
         }
     }
 
-    public void changeTicket(Integer l, String date, String commentaire){
-        for(Ticket t: Tickets){
-            if(t.getTicket_id().equals(l)){
-                t.setTicket_status(1);
-                t.setTicket_date(date);
-                t.setTicket_desc(commentaire);
-            }
-            else{
-                continue;
-            }
-        }
-    }
-
-
-
     public Ticket findTicketByID(Integer l){
         for(Ticket t: Tickets){
             if(t.getTicket_id().equals(l)){
@@ -156,8 +114,6 @@ public class Facade {
     }
 
     public boolean checkAuthentificationTicket(Ticket t){
-        // true = interdire de prendre en charge
-        // false =  permettre de prendre en charge
         if(!t.getTicket_aut()) {
             return false; // permettre de prendre en charge
         } else{ return  true;}
@@ -207,14 +163,6 @@ public class Facade {
         return BigProjets;
     }
 
-    public void setBigProjets(ArrayList<Projet> bigProjets) {
-        BigProjets = bigProjets;
-    }
-
-    public void setApplications(ArrayList<Application> applications) {
-        Applications = applications;
-    }
-
     public void creerProjet(String resp_proj, String desc_proj, String[] application_select) {
 
         Utilisateur resp_proj_utilisateur = findMembre(resp_proj);
@@ -240,6 +188,7 @@ public class Facade {
     public List<Utilisateur> getUtilisateurs() {
         return Utilisateurs;
     }
+
     public boolean creerUtilisateur(String username, String password, String user_profil_id){
         if(!Utilisateurs.contains(findMembre(username))){
             if(user_profil_id.equals("gestionaire")){
@@ -266,7 +215,6 @@ public class Facade {
     public void changeRoleUtilisateur(Utilisateur utilisateur, String s) {
         Utilisateurs.remove(utilisateur);
         creerUtilisateur(utilisateur.getUsername(), utilisateur.getPassword(), s);
-        // PAS FINIT
     }
 
     public void supprimerUtilisateur(Utilisateur utilisateursupprime) {

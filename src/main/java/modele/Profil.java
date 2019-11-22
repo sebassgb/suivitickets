@@ -16,35 +16,4 @@ public class Profil {
         this.profile_aut = profile_aut;
     }
 
-    public String getProfile_id() {
-        return profile_id;
-    }
-
-    public void setProfile_id(String profile_id) {
-        this.profile_id = profile_id;
-    }
-
-    public String getProfile_aut() {
-        return profile_aut;
-    }
-
-    public void setProfile_aut(String profile_aut) {
-        this.profile_aut = profile_aut;
-    }
-
-    public String getProfileAut() {
-        return profile_aut;
-    }
-
-    public void setProfileAut(String profile_aut) {
-        this.profile_aut = profile_aut;
-    }
-
-    public String getProfilDesc() {
-        return profile_desc;
-    }
-
-    public void setProfileDesc(String profile_desc) {
-        this.profile_desc = profile_desc;
-    }
 }

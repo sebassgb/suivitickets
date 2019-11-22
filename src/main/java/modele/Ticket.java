@@ -7,7 +7,6 @@ import java.util.Random;
 @Entity
 public class Ticket {
 
-    @Id
     private Integer ticket_id;
     private String ticket_appnom;
     private Boolean ticket_aut = false; // false = permettre de prendre en charge
@@ -35,23 +34,8 @@ public class Ticket {
         return ticket_client_creator;
     }
 
-    public void setTicket_client_creator(String ticket_client_creator) {
-        this.ticket_client_creator = ticket_client_creator;
-    }
     public Integer getTicket_id() {
         return ticket_id;
-    }
-
-    public void setTicket_id(Integer ticket_id) {
-        this.ticket_id = ticket_id;
-    }
-
-    public String getTicket_appnom() {
-        return ticket_appnom;
-    }
-
-    public void setTicket_appnom(String ticket_appnom) {
-        this.ticket_appnom = ticket_appnom;
     }
 
     public Boolean getTicket_aut() {
@@ -62,24 +46,12 @@ public class Ticket {
         this.ticket_aut = ticket_aut;
     }
 
-    public String getTicket_date() {
-        return ticket_date;
-    }
-
     public void setTicket_date(String ticket_date) {
         this.ticket_date = ticket_date;
     }
 
-    public String getTicket_desc() {
-        return ticket_desc;
-    }
-
     public void setTicket_desc(String ticket_desc) {
         this.ticket_desc = ticket_desc;
-    }
-
-    public Integer getTicket_status() {
-        return ticket_status;
     }
 
     public void setTicket_status(Integer ticket_status) {
@@ -99,14 +71,6 @@ public class Ticket {
             System.out.printf("APRES");
             System.out.printf("\n");
         }
-    }
-
-    public String getTicket_title() {
-        return ticket_title;
-    }
-
-    public void setTicket_title(String ticket_title) {
-        this.ticket_title = ticket_title;
     }
 
     public String getTicket_trace() {
