@@ -104,29 +104,6 @@ public class Facade {
         }
         return null;
     }
-//
-
-
-//    public Collection<String> findResponsable(String l) {
-//        Utilisateur m=findMembre(l);
-//        Collection<String> resp = new ArrayList<>();
-//        if (m!=null) {
-//            for (Projet p:m.getResponsable()){
-//                resp.add(p.getProj_responsable()+ "(" + p.getProj_desc()+ ")");
-//            }
-//        }
-//        return resp;
-//    }
-//    public Collection<String> findContribution(String l) {
-//        Utilisateur m=findMembre(l);
-//        Collection<String> part = new ArrayList<>();
-//        if (m!=null) {
-//            for (Projet p:m.getResponsable()){
-//                part.add(p.getProj_contribution()+ "(" + p.getProj_desc()+ ")");
-//            }
-//        }
-//        return part;
-//    }
 
 
 
@@ -141,14 +118,6 @@ public class Facade {
         return null;
     }
 
-
-//    public void ajoutParticipe(String l, String ip) {
-//        Membre m=findMembre(l);
-//        Projet p=findProjet(ip);
-//        if (!m.getParticipe().contains(p)) {
-//            m.getParticipe().add(p);
-//        }
-//    }
 
     public void changeTicketResolu(Integer l,  String d, String commentaire, String nom){
         for(Ticket t: Tickets){
@@ -277,6 +246,7 @@ public class Facade {
         if(!Utilisateurs.contains(findMembre(username))){
             if(user_profil_id.equals("gestionaire")){
                 Gestionaire newUtil = new Gestionaire(username, password, user_profil_id);
+                newUtil.setAgent_responsable(Utilisateurs);
                 Utilisateurs.add(newUtil);
             } else if(user_profil_id.equals("agent")){
                 Agent newUtil = new Agent(username, password, user_profil_id);
@@ -294,6 +264,7 @@ public class Facade {
 
     }
     public void changeRoleUtilisateur(Utilisateur utilisateur, String s) {
+        Utilisateurs.remove(utilisateur);
         creerUtilisateur(utilisateur.getUsername(), utilisateur.getPassword(), s);
         // PAS FINIT
     }

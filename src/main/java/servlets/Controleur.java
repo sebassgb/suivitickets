@@ -51,15 +51,12 @@ public class Controleur extends HttpServlet {
                     case "log":
                         String l = request.getParameter("login");
                         String p = request.getParameter("password");
-                        System.out.printf(l);
-                        System.out.printf("\n");
                         Utilisateur m = facade.findMembre(l, p);
                         if (m != null) {
                             request.getSession().setAttribute("courant", l);
                             request.setAttribute("surnom", m.getUsername());
                             request.setAttribute("user_id", m.getUser_profil_id());
                                 if (m.getUser_profil_id().equals("agent")) {
-                                    System.out.printf(m.getUser_profil_id());
                                     request.setAttribute("responsable_ticket", ((Agent) m).getResponsable_ticket());
                                     request.getRequestDispatcher("WEB-INF/home.jsp").forward(request,response);
                                 } else if (m.getUser_profil_id().equals("gestionaire")) {
