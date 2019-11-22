@@ -16,9 +16,9 @@
 
     <center><h1 class="hit-the-floor">Bonjour à ${surnom}, vous êtes ${user_id}</h1></center>
 
-
+<center>
     <c:forEach items="${list_utilisateurs}" var="utilisateurs" varStatus="utilisateurs.getUsername()">
-        <c:if test="${utilisateurs.getUser_profil_id() != surnom}">
+        <c:if test="${utilisateurs.getUsername() != surnom}">
             <ul>
                 <li>Utilisateur: ${utilisateurs.getUsername()} <br>
                 Role: ${utilisateurs.getUser_profil_id()}
@@ -38,6 +38,6 @@
 
             </ul>
         </c:if>
-    </c:forEach>
+    </c:forEach></center>
 </body>
 </html>

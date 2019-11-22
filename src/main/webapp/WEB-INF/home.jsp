@@ -25,7 +25,7 @@
     <ul>
         <c:forEach items="${responsable_ticket}" var="pr">
             <c:if test="${pr.ticket_status == 0}">
-                <li>${pr.ticket_id} ${pr.ticket_appnom}
+                <li>${pr.ticket_id}, ${pr.ticket_appnom},
                     <form method="post">
                     <p>
                         <select class="optionTicket" name="role">
@@ -34,20 +34,16 @@
                         </select>
                         <button type="submit" name="TODO" value="charge" > Submit </button>
                     </p>
-                </form>
+                    </form>
 
                     <c:choose>
                         <c:when test="${pr.ticket_aut == true &&  pr.ticket_responsable.getUsername().equals(surnom)}">
-                                <form id="form">
+                                <form id="form" method="post">
                                     Ticket besoin resolu : <input class="envoyerTicket" type="text" name="surnom" value="${surnom}" required> <input class="envoyerTicket"  type="number" name="ticket" placeholder="Id Ticket" value="${pr.ticket_id}" required/>  <input class="envoyerTicket" type="text" name="date" placeholder="Date" required/><input  class="envoyerTicket" type="text" name="commentaire" placeholder="Commentaire" required/>
                                     <button type="submit" name="TODO" value="resolu"> Changer!</button>
                                 </form>
                         </c:when>
-                        <c:otherwise>
-<%--                            //--%>
-                        </c:otherwise>
                     </c:choose>
-
                 </li>
             </c:if>
         </c:forEach>

@@ -18,7 +18,6 @@
         <center><form method="post" id="form">
     Responsable du projet : <input type="text" name="resp_proj" id="resp_proj"/><br/><br/>
     Description du projet : <textarea name="desc_proj" cols="30" rows="5" id="desc_proj"></textarea><br/><br/>
-
     Application dans le projet : <SELECT multiple="multiple" name="application_select" id="app_proj"><br/><br/>
                 <c:forEach items="${applications_created}" var="application">
                 <option value="${application}">${application.getApp_nom()}</option>

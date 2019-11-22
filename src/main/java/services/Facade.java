@@ -52,7 +52,7 @@ public class Facade {
 
         t1.setTicket_trace("tata");
         t2.setTicket_trace("tata");
-        t1.setTicket_responsable(m2);
+//        t1.setTicket_responsable(m2);
 
 
         //========================
@@ -126,6 +126,7 @@ public class Facade {
                 t.setTicket_date(d);
                 t.setTicket_desc(commentaire);
                 t.setTicket_responsable(findMembre(nom));
+                t.setTicket_trace(nom);
             }
             else{
                 continue;
@@ -242,7 +243,7 @@ public class Facade {
     public List<Utilisateur> getUtilisateurs() {
         return Utilisateurs;
     }
-    public void creerUtilisateur(String username, String password, String user_profil_id){
+    public boolean creerUtilisateur(String username, String password, String user_profil_id){
         if(!Utilisateurs.contains(findMembre(username))){
             if(user_profil_id.equals("gestionaire")){
                 Gestionaire newUtil = new Gestionaire(username, password, user_profil_id);
@@ -257,8 +258,10 @@ public class Facade {
             } else {
                 Utilisateurs.add(new Admin(username, password, user_profil_id));
             }
+            return true;
         } else {
-            System.out.printf("EXIST");
+            // PAS FAIT
+            return false;
         }
 
 

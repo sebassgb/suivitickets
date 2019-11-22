@@ -102,7 +102,8 @@ public class Controleur extends HttpServlet {
                                 facade.changeTicketPrendreEnCharge(ticket_responsable, responsable);
                             }
                             else {
-                                    //
+                                    // PAS FAIT
+
                             }
                         } else {
                             Ticket ticket_liberer = facade.findTicketByID(Integer.parseInt(ticket_information));
@@ -217,7 +218,8 @@ public class Controleur extends HttpServlet {
                     String usernameNew = request.getParameter("username");
                     String passwordNew = request.getParameter("password");
                     String user_profil_id = request.getParameter("user_profil_id");
-                    facade.creerUtilisateur(usernameNew, passwordNew, user_profil_id);
+                    boolean isSucces = facade.creerUtilisateur(usernameNew, passwordNew, user_profil_id);
+                    request.setAttribute("isSucces", isSucces);
                     request.getRequestDispatcher("WEB-INF/admin.jsp").forward(request, response);
                     break;
                 default:
