@@ -23,10 +23,11 @@ public class Facade {
     @PostConstruct
     public void init(){
         Utilisateurs=new ArrayList<Utilisateur>();
-        Gestionaire m1=  new Gestionaire("toto",
+        Gestionaire m1 =  new Gestionaire("toto",
                 "toto","gestionaire");
+
         Utilisateurs.add(m1);
-        Agent m2=  new Agent("tata",
+        Agent m2 =  new Agent("tata",
                 "tata","agent");
         Utilisateurs.add(m2);
 
@@ -49,6 +50,7 @@ public class Facade {
         Tickets.add(t2);
         Ticket t3 = new Ticket("tete","insa","13-06-2019","abc");
         Tickets.add(t3);
+
         t1.setTicket_trace("tata");
         t2.setTicket_trace("tata");
         t1.setTicket_responsable(m2);
@@ -273,5 +275,20 @@ public class Facade {
             }
         }
         return null;
+    }
+
+    public List<Utilisateur> getUtilisateurs() {
+        return Utilisateurs;
+    }
+    public void creerUtilisateur(String username, String password, String user_profil_id){
+
+    }
+    public void changeRoleUtilisateur(Utilisateur utilisateur, String s) {
+        creerUtilisateur(utilisateur.getUsername(), utilisateur.getPassword(), s);
+        // PAS FINIT
+    }
+
+    public void supprimerUtilisateur(Utilisateur utilisateursupprime) {
+        Utilisateurs.remove(utilisateursupprime);
     }
 }

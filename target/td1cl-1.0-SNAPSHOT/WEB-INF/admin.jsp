@@ -6,9 +6,11 @@
     <title>Créer Ticket</title>
 </head>
 <body>
-        <a href="login.html"><button class="logout">Fermer la session</button></a>
-        <a href="utilisateur.html"><button class="utilisateurs">Utilisateurs</button></a>
-        <a href="applications.html"><button class="applications">Applications</button></a>
+    <form method="post">
+        <button class="logout" name="TODO" value="noop">Fermer la session</button>
+        <button class="utilisateurs" name="TODO" value="admin">Utilisateurs</button></a>
+        <button class="applications">Applications</button>
+    </form>
 
 <center><h1 class="hit-the-floor">Créer un utilisateur</h1></center>
 <center><form method="post" id="form">

@@ -4,7 +4,6 @@ import modele.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 import services.Facade;
-import services.Service2;
 
 
 import javax.servlet.ServletConfig;
@@ -15,9 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Collection;
 
 @WebServlet("/Controleur")
 public class Controleur extends HttpServlet {
@@ -25,8 +22,6 @@ public class Controleur extends HttpServlet {
     @Autowired
     private Facade facade;
 
-    @Autowired
-    private Service2 service2;
 
     /*@Override
 //    public void init() throws ServletException {
@@ -62,17 +57,18 @@ public class Controleur extends HttpServlet {
                             request.setAttribute("surnom", m.getUsername());
                             request.setAttribute("user_id", m.getUser_profil_id());
                                 if (m.getUser_profil_id().equals("agent")) {
-                                    m = (Agent) m;
                                     request.setAttribute("responsable_ticket", ((Agent) m).getResponsable_ticket());
+                                    request.getRequestDispatcher("WEB-INF/home.jsp").forward(request,response);
                                 } else if (m.getUser_profil_id().equals("gestionaire")) {
                                     request.setAttribute("list_agent", ((Gestionaire) m).getAgent_responsable());
                                     request.getRequestDispatcher("WEB-INF/gestionAgent.jsp").forward(request, response);
-
                                 } else if(m.getUser_profil_id().equals("client")) {
                                   /// POUR TOI
-                                    versPage(request, response);
+                                    request.getRequestDispatcher("WEB-INF/createTicket.jsp").forward(request, response);
+                                } else if(m.getUser_profil_id().equals("admin")){
+                                    request.setAttribute("list_utilisateurs", facade.getUtilisateurs());
+                                    request.getRequestDispatcher("WEB-INF/utilisateur.jsp").forward(request, response);
                                 }
-                                versPage(request, response);
 
                             } else {
                                 request.getRequestDispatcher("WEB-INF/connexion.jsp").forward(request, response);
@@ -166,18 +162,46 @@ public class Controleur extends HttpServlet {
                     Utilisateur m=facade.findMembre(l);
                     request.setAttribute("surnom",m.getUsername());
                     request.setAttribute("user_id", m.getUser_profil_id());
-
                     request.setAttribute("applications",facade.getApplications());
-
                     request.getRequestDispatcher("WEB-INF/gestionaire.jsp").forward(request, response);
                     break;
 
                 case "creerprojet":
-
                     String resp_proj = request.getParameter("resp_proj");
                     String desc_proj = request.getParameter("desc_proj");
                     String[] application_select = request.getParameterValues("application_select");
                     facade.creerProjet(resp_proj, desc_proj, application_select);
+                    versPage(request, response);
+                    break;
+                case "admin":
+                    versPage(request, response);
+                    break;
+                case "autorisation":
+                    String AutorisationUtilisateur = request.getParameter("role_change");
+                    String[] split = AutorisationUtilisateur.split("\\+");
+                    Utilisateur utilisateur = facade.findMembre(split[0]);
+                    facade.changeRoleUtilisateur(utilisateur, split[1]);
+                    versPage(request, response);
+                    break;
+                case "supprimerUtilisateur":
+                    String getUtilisateur = request.getParameter("role_change");
+                    String[] getNameUtilisateur = getUtilisateur.split("\\+");
+                    Utilisateur Utilisateursupprime = facade.findMembre(getNameUtilisateur[0]);
+                    facade.supprimerUtilisateur(Utilisateursupprime);
+                    versPage(request, response);
+                    break;
+
+                case "Utilisateur":
+                    String courant= (String) request.getSession().getAttribute("courant");
+                    Utilisateur p=facade.findMembre(courant);
+                    request.setAttribute("surnom",p.getUsername());
+                    request.setAttribute("user_id", p.getUser_profil_id());
+                    request.getRequestDispatcher("WEB-INF/admin.jsp").forward(request, response);
+                    break;
+                case "createUtilisateur":
+                    String usernameNew = request.getParameter("username");
+                    String passwordNew = request.getParameter("password");
+
                 default:
                         versPage(request, response);
             }
@@ -192,7 +216,6 @@ public class Controleur extends HttpServlet {
         request.setAttribute("surnom",m.getUsername());
         request.setAttribute("user_id", m.getUser_profil_id());
         if(m.getUser_profil_id().equals("agent")) {
-            m = (Agent) m;
             request.setAttribute("responsable_ticket", ((Agent) m).getResponsable_ticket());
             request.getRequestDispatcher("WEB-INF/home.jsp").forward(request,response);
         } else if(m.getUser_profil_id().equals("gestionaire")){
@@ -200,8 +223,10 @@ public class Controleur extends HttpServlet {
             request.getRequestDispatcher("WEB-INF/gestionAgent.jsp").forward(request, response);
         }
         else if(m.getUser_profil_id().equals("client")){
-
             request.getRequestDispatcher("WEB-INF/createTicket.jsp").forward(request, response);
+        } else if(m.getUser_profil_id().equals("admin")){
+            request.setAttribute("list_utilisateurs", facade.getUtilisateurs());
+            request.getRequestDispatcher("WEB-INF/utilisateur.jsp").forward(request, response);
         }
 
     }
