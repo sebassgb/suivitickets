@@ -22,7 +22,7 @@
             <option value="client"> Client
             <option value="admin"> Administrateur
         </SELECT><br/><br/>
-    <button type="submit" class="createUtilisateur">Créer utilisateur</button>
+    <button type="submit" name="TODO" value="createUtilisateur">Créer utilisateur</button>
 
 </form></center>
 </body>

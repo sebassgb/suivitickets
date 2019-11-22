@@ -33,7 +33,7 @@ public class Facade {
         Client m3=  new Client("tete",
                 "tete","client");
         Utilisateurs.add(m3);
-        Admin m4=  new Admin("tutu",
+        Admin m4 =  new Admin("tutu",
                 "tutu","admin");
         Utilisateurs.add(m4);
 
@@ -274,6 +274,23 @@ public class Facade {
         return Utilisateurs;
     }
     public void creerUtilisateur(String username, String password, String user_profil_id){
+        if(!Utilisateurs.contains(findMembre(username))){
+            if(user_profil_id.equals("gestionaire")){
+                Gestionaire newUtil = new Gestionaire(username, password, user_profil_id);
+                Utilisateurs.add(newUtil);
+            } else if(user_profil_id.equals("agent")){
+                Agent newUtil = new Agent(username, password, user_profil_id);
+                newUtil.setResponsable_ticket(Tickets);
+                Utilisateurs.add(newUtil);
+            } else if(user_profil_id.equals("client")){
+                Utilisateurs.add(new Client(username, password, user_profil_id));
+            } else {
+                Utilisateurs.add(new Admin(username, password, user_profil_id));
+            }
+        } else {
+            System.out.printf("EXIST");
+        }
+
 
     }
     public void changeRoleUtilisateur(Utilisateur utilisateur, String s) {
