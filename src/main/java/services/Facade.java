@@ -79,7 +79,6 @@ public class Facade {
     }
 
    public Utilisateur findMembre(String l) {
-//        return em.find(Membre.class,l);
 
         for (Utilisateur m:Utilisateurs) {
             if (m.getUsername().equals(l)) {
