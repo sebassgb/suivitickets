@@ -4,11 +4,12 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import java.util.Collection;
+import java.util.Random;
 
 @Entity
 public class Projet {
     @Id
-    private String proj_id ;
+    private int proj_id ;
     private String proj_contribution;
     private String proj_desc;
     private Utilisateur proj_responsable;
@@ -17,11 +18,13 @@ public class Projet {
     @ManyToMany(mappedBy = "participe")
     private Collection<Utilisateur> Utilisateurs;
     private Collection<Application> Applications;
+    Random rand = new Random();
 
 
     // Constructeurs
 
     public Projet(Utilisateur proj_responsable, Collection<Application> Application) {
+        this.proj_id = rand.nextInt(100);
         this.proj_responsable = proj_responsable;
         this.Applications = Application;
     }
@@ -30,11 +33,11 @@ public class Projet {
     // Getters et setters
 
 
-    public String getProj_id() {
+    public int getProj_id() {
         return proj_id;
     }
 
-    public void setProj_id(String proj_id) {
+    public void setProj_id(int proj_id) {
         this.proj_id = proj_id;
     }
 

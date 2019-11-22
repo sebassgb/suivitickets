@@ -12,7 +12,6 @@ import java.util.List;
 public class Facade {
     private ArrayList<Projet> BigProjets;
     private List<Utilisateur> Utilisateurs;
-    private List<Projet> projets;
     private ArrayList<Ticket> Tickets;
     private ArrayList<Application> Applications;
     public Facade(){
@@ -60,23 +59,24 @@ public class Facade {
 
         Applications = new ArrayList<Application>();
 
-        Application a1 = new Application(Tickets);
+        Application a1 = new Application("Projet d'option", "3", m4,Tickets);
+        Application a2 = new Application("Projet d'option2", "4", m4,Tickets);
 
-        a1.setApp_nom("app03");
         Applications.add(a1);
+        Applications.add(a2);
 
 //        =========================
 
         BigProjets=new ArrayList<Projet>();
         Projet p1 = new Projet(m1, Applications);
         BigProjets.add(p1);
-
+        Projet p2 = new Projet(m1, Applications);
+        BigProjets.add(p2);
 //        t2.setTicket_status(0);
         //
 //
 //        // m1 responsabl de p1
         p1.setProj_responsable(m1); // gestionaire
-        a1.setApp_responsable(m4); // admin
         m2.setResponsable_ticket(Tickets);
         m5.setResponsable_ticket(Tickets);
 
@@ -130,11 +130,11 @@ public class Facade {
 
 
 
-    public Projet findProjet(String ip){
+    public Projet findProjet(int ip){
 //        return em.find(Projet.class,ip);
 
-        for (Projet p:projets) {
-            if (p.getProj_id().equals(ip)) {
+        for (Projet p:BigProjets) {//attentio modifie
+            if (p.getProj_id() == ip) {
                 return p;
             }
         }
@@ -150,11 +150,6 @@ public class Facade {
 //        }
 //    }
 
-    public List<Projet> getProjets() {
-//        return em.createQuery("From Projet p")
-//                .getResulconfigtList();
-        return projets;
-    }
     public void changeTicketResolu(Integer l,  String d, String commentaire, String nom){
         for(Ticket t: Tickets){
             if(t.getTicket_id().equals(l)){
@@ -211,14 +206,12 @@ public class Facade {
         ticket_liberer.setTicket_aut(false);
     }
 
-
     public void addTicket(Ticket ticketClient) {
         Tickets.add(ticketClient);
-        System.out.println(Tickets.get(0).getTicket_client_creator());
-        System.out.println(Tickets.get(0).getTicket_id());
-        System.out.println(Tickets.get(0).getTicket_appnom());
-        System.out.println(Tickets.get(0).getTicket_date());
-        System.out.println(Tickets.get(0).getTicket_desc());
+    }
+
+    public void addApplication(Application newApplication) {
+        Applications.add(newApplication);
     }
 
 
@@ -235,6 +228,10 @@ public class Facade {
             return TicketsClient;
     }
 
+    public ArrayList<Application> getApplications(){
+        return Applications;
+    }
+
     public ArrayList<Ticket> getTickets() {
         return Tickets;
     }
@@ -245,10 +242,6 @@ public class Facade {
 
     public void setBigProjets(ArrayList<Projet> bigProjets) {
         BigProjets = bigProjets;
-    }
-
-    public ArrayList<Application> getApplications() {
-        return Applications;
     }
 
     public void setApplications(ArrayList<Application> applications) {

@@ -12,6 +12,12 @@
         <button class="applications">Applications</button>
     </form>
 
+<form method="post">
+    <button class="logout" name="TODO" value="noop">Fermer la session</button>
+        <button class="utilisateurs">Créer utilisateurs</button>
+        <button class="applications">Applications</button>
+</form>
+
 <center><h1 class="hit-the-floor">Liste des utilisateurs</h1></center>
 
     <center><h1 class="hit-the-floor">Bonjour à ${surnom}, vous êtes ${user_id}</h1></center>

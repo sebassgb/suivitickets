@@ -7,7 +7,7 @@
 </head>
 <body>
 <form method="post">
-        <a href="login.html"><button class="logout">Fermer la session</button></a>
+    <button class="logout" name="TODO" value="noop">Fermer la session</button>
         <button class="createTicket" name="TODO">Créer Ticket</button>
 </form>
 

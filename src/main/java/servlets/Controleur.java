@@ -68,6 +68,13 @@ public class Controleur extends HttpServlet {
                                 } else if(m.getUser_profil_id().equals("admin")){
                                     request.setAttribute("list_utilisateurs", facade.getUtilisateurs());
                                     request.getRequestDispatcher("WEB-INF/utilisateur.jsp").forward(request, response);
+                                    versPage(request, response);
+                                } else if(m.getUser_profil_id().equals("admin")) {
+                                    /// POUR TOI
+                                    request.setAttribute("applications_created", facade.getApplications());
+                                    request.setAttribute("projets_created", facade.getBigProjets());
+                                    System.out.println(facade.getBigProjets().get(0).getProj_id());
+                                    request.getRequestDispatcher("WEB-INF/applications.jsp").forward(request, response);
                                 }
 
                             } else {
@@ -121,6 +128,16 @@ public class Controleur extends HttpServlet {
                         facade.addTicket(ticketClient);
                         versPage(request, response);
                         break;
+                case "createApplication":
+                    String app_proj_id = request.getParameter("app_proj_id");
+                    String app_nom = request.getParameter("app_nom");
+                    Utilisateur app_responsable=facade.findMembre(request.getParameter("app_responsable"));
+                    Application applicationPetite = new Application(app_nom, app_proj_id, app_responsable,facade.getTickets());
+                    facade.addApplication(applicationPetite);
+                    request.setAttribute("applications_created", facade.getApplications());
+                    request.setAttribute("projets_created", facade.getBigProjets());
+                    versPage(request, response);
+                    break;
 
                     case "noop":
                             HttpSession session = request.getSession(false);
@@ -227,6 +244,9 @@ public class Controleur extends HttpServlet {
         } else if(m.getUser_profil_id().equals("admin")){
             request.setAttribute("list_utilisateurs", facade.getUtilisateurs());
             request.getRequestDispatcher("WEB-INF/utilisateur.jsp").forward(request, response);
+        }
+        else if(m.getUser_profil_id().equals("admin")){
+            request.getRequestDispatcher("WEB-INF/applications.jsp").forward(request, response);
         }
 
     }
