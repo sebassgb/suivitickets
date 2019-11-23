@@ -25,7 +25,10 @@ public class Projet {
         this.Applications = Application;
     }
 
-    // Getters et setters
+    public Utilisateur getProj_responsable() {
+        return proj_responsable;
+    }
+// Getters et setters
 
     public void setProj_desc(String proj_desc) {
         this.proj_desc = proj_desc;
