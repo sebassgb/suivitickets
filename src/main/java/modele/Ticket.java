@@ -2,6 +2,7 @@ package modele;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.util.Date;
 import java.util.Random;
 
 public class Ticket {
@@ -16,6 +17,8 @@ public class Ticket {
     private Integer ticket_status; // 0 = Non resolu, 1 = resolu
     private Utilisateur ticket_responsable;
     private String ticket_client_creator;
+    private String ticket_commentaire;
+    private String ticket_date_resolution;
     Random rand = new Random();
 
     public Ticket(String ticket_client_creator, String ticket_appnom, String ticket_title, String ticket_date,
@@ -96,5 +99,21 @@ public class Ticket {
 
     public void setTicket_id(Integer ticket_id) {
         this.ticket_id = ticket_id;
+    }
+
+    public String getTicket_commentaire() {
+        return ticket_commentaire;
+    }
+
+    public void setTicket_commentaire(String ticket_commentaire) {
+        this.ticket_commentaire = ticket_commentaire;
+    }
+
+    public String getTicket_date_resolution() {
+        return ticket_date_resolution;
+    }
+
+    public void setTicket_date_resolution(String ticket_date_resolution) {
+        this.ticket_date_resolution = ticket_date_resolution;
     }
 }

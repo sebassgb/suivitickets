@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -14,7 +15,6 @@ public class Facade {
     private List<Utilisateur> Utilisateurs;
     private ArrayList<Ticket> Tickets;
     private ArrayList<Application> Applications;
-
     public Facade() {
     }
 
@@ -90,8 +90,8 @@ public class Facade {
         ticketsolu.setTicket_trace(nom);
         ticketsolu.setTicket_status(1);
         ticketsolu.setTicket_aut(false);
-        ticketsolu.setTicket_date(d);
-        ticketsolu.setTicket_desc(commentaire);
+        ticketsolu.setTicket_date_resolution(d);
+        ticketsolu.setTicket_commentaire(commentaire);
         ticketsolu.setTicket_responsable(null);
     }
 
@@ -210,5 +210,15 @@ public class Facade {
 
     public void supprimerUtilisateur(Utilisateur utilisateursupprime) {
         Utilisateurs.remove(utilisateursupprime);
+    }
+
+    public ArrayList<Utilisateur> getAdmins(){
+        ArrayList<Utilisateur> Admins = new ArrayList<Utilisateur>();
+        for (Utilisateur u: Utilisateurs){
+            if(u.getUser_profil_id().equals("admin")){
+                Admins.add(u);
+            }
+        }
+        return  Admins;
     }
 }

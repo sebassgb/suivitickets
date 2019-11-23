@@ -39,9 +39,13 @@
                                 <form id="form" method="post">
                                     Ticket besoin resolu : <input class="envoyerTicket" type="text" name="surnom"
                                         value="${surnom}" required> <input class="envoyerTicket" type="hidden"
-                                        name="ticket" placeholder="Id Ticket" value="${pr.ticket_id}" required /> <input
-                                        class="envoyerTicket" type="date" name="date" placeholder="Date"
-                                        min="2019-01-01" max="12-31-2019" id="date_ticket" required /> <input
+                                        name="ticket" placeholder="Id Ticket" value="${pr.ticket_id}" required />
+<%--                                    <input--%>
+<%--                                        class="envoyerTicket" type="Date" name="date" placeholder="Date"--%>
+<%--                                        min="2019-01-01" max="12-31-2019" id="date_ticket" required />--%>
+                                    <input type="date" name="date" id="date_ticket" value="2019-11-22" min="2019-01-01"
+                                           max="12-31-2019" required>
+                                    <input
                                         class="envoyerTicket" type="text" name="commentaire" placeholder="Commentaire"
                                         required />
 

@@ -20,8 +20,8 @@
         <form method="post" id="form">
             Date du ticket : <input type="date" name="date_ticket" id="date_ticket" value="2019-11-22" min="2019-01-01"
                 max="12-31-2019" required /><br /><br />
-            Titre du ticket : <input type="text" name="title_ticket" id="title_ticket" required /><br /><br />
-            Nom de l'utilisateur : <input type="text" name="username" id="username" required
+            Titre du ticket : <input type="text" name="title_ticket" id="title_ticket" required /><br />
+            <input type="hidden" name="username" id="username"
                 value="${surnom}" /><br /><br />
             Description du ticket : <textarea name="desc_ticket" id="desc_ticket" cols="30"
                 rows="5">l'application ne marche pas comme prevu</textarea><br /><br />

@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 
 @WebServlet("/Controleur")
 public class Controleur extends HttpServlet {
@@ -82,11 +83,9 @@ public class Controleur extends HttpServlet {
             switch (todo) {
             case "resolu":
                 Integer t = Integer.parseInt(request.getParameter("ticket"));
-                String d = request.getParameter("date");
+                String d = request.getParameter("date").toString();
                 String commentaire = request.getParameter("commentaire");
                 String nomAgentTrace = request.getParameter("surnom");
-                System.out.printf("======================= \n");
-                System.out.printf(nomAgentTrace + "\n");
                 Ticket ticketResolu = facade.findTicketByID(t);
                 facade.changeTicketResolu(ticketResolu, d, commentaire, nomAgentTrace);
                 versPage(request, response);
@@ -124,7 +123,6 @@ public class Controleur extends HttpServlet {
                 break;
 
             case "application":
-
                 Application(request, response);
                 break;
             case "createApplication":
@@ -237,6 +235,7 @@ public class Controleur extends HttpServlet {
         request.setAttribute("surnom", UtilisateurActuelle.getUsername());
         request.setAttribute("applications_created", facade.getApplications());
         request.setAttribute("projets_created", facade.getBigProjets());
+        request.setAttribute("list_admin", facade.getAdmins());
         request.getRequestDispatcher("WEB-INF/applications.jsp").forward(request, response);
     }
 

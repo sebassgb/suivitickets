@@ -20,26 +20,19 @@
     <center>
         <form method="post" id="form">
             Responsable de l'application :
-            <select name="app_responsable" >
-                <c:forEach items="${list_agent}" var="ag">
-                    <c:if test="${ag.getUser_profil_id().equals('agent')}">
+            <select name="app_responsable" required>
+                <c:forEach items="${list_admin}" var="ag">
                         <option value="${ag.username}">${ag.username}</option>
-                    </c:if>
                 </c:forEach>
             </select>
-
-
-
-
-            <input type="text" name="app_responsable" id="app_responsable"
-                value="${surnom}" required/><br /><br />
+            <br />
             assigner au projet avec ID :
             <SELECT name="app_proj_id" size="1">
                 <c:forEach items="${projets_created}" var="projet">
                     <OPTION value="${projet.getProj_id()}">${projet.getProj_id()} ${projet.getProj_responsable().getUsername()}
                 </c:forEach>
             </SELECT><br /><br />
-            Nom de l'application : <input type="text" name="app_nom" id="app_nom" /><br /><br />
+            Nom de l'application : <input type="text" name="app_nom" id="app_nom" required/><br /><br />
             <button type="submit" class="createUtilisateur" name="TODO" value="createApplication">Créer
                 application</button>
         </form>
