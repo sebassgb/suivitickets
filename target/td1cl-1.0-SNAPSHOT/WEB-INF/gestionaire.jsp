@@ -23,17 +23,20 @@
 
     <center>
         <form method="post" id="form">
-            Responsable du projet : <input type="text" name="resp_proj" id="resp_proj" /><br /><br />
+            Responsable du projet :<select name="resp_proj" required>
+                <c:forEach items="${list_agent}" var="ag">
+                    <c:if test="${ag.getUser_profil_id().equals('agent')}">
+                        <option value="${ag.username}">${ag.username}</option>
+                    </c:if>
+                </c:forEach>
+            </select> <br />
             Description du projet : <textarea name="desc_proj" cols="30" rows="5" id="desc_proj"></textarea><br /><br />
             Application dans le projet : <SELECT multiple="multiple" name="application_select"
-                id="app_proj"><br /><br />
+                id="app_proj" required><br /><br />
                 <c:forEach items="${applications_created}" var="application">
-                    <option value="${application}">${application.getApp_nom()}</option>
+                    <option value="${application}" >${application.getApp_nom()}</option>
                 </c:forEach>
             </SELECT><br /><br />
-            <%--    Application dans le projet: <c:forEach items="${applications}" var="application">--%>
-            <%--            <option value="${application.getApp_nom()}">${application.getApp_nom()}</option>--%>
-            <%--        </c:forEach>--%>
             <button class="createProjet" type="submit" name="TODO" value="creerprojet">Créer projet</button>
         </form>
     </center>

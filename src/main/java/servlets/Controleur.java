@@ -179,6 +179,7 @@ public class Controleur extends HttpServlet {
                 request.setAttribute("user_id", m.getUser_profil_id());
                 request.setAttribute("applications", facade.getApplications());
                 request.setAttribute("applications_created", facade.getApplications());
+                request.setAttribute("list_agent", ((Gestionaire) m).getAgent_responsable());
                 request.getRequestDispatcher("WEB-INF/gestionaire.jsp").forward(request, response);
                 break;
 
