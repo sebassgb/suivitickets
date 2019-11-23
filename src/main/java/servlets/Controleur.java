@@ -88,8 +88,11 @@ public class Controleur extends HttpServlet {
                         Integer t = Integer.parseInt(request.getParameter("ticket"));
                         String d = request.getParameter("date");
                         String commentaire = request.getParameter("commentaire");
-                        String nom = request.getParameter("surnom");
-                        facade.changeTicketResolu(t, d, commentaire, nom);
+                        String nomAgentTrace = request.getParameter("surnom");
+                        System.out.printf("======================= \n");
+                        System.out.printf(nomAgentTrace + "\n");
+                        Ticket ticketResolu = facade.findTicketByID(t);
+                        facade.changeTicketResolu(ticketResolu, d, commentaire, nomAgentTrace);
                         versPage(request, response);
                         break;
                     case "charge":
@@ -136,7 +139,8 @@ public class Controleur extends HttpServlet {
                     facade.addApplication(applicationPetite);
                     Application(request, response);
                     break;
-                    case "noop":
+
+                case "noop":
                             HttpSession session = request.getSession(false);
                             if (session !=null){
                                 session.invalidate();
@@ -154,20 +158,18 @@ public class Controleur extends HttpServlet {
                  case "agent":
                             String agent_select_username = request.getParameter("agent_select");
                             Utilisateur agent_select =  facade.findMembre(agent_select_username);
-
                             ArrayList<Ticket> Tickets = facade.getTickets();
                             ArrayList<Ticket> ticket_pris_en_charge = new ArrayList<Ticket>();
                             ArrayList<Ticket> ticket_resolu = new ArrayList<Ticket>();
-                            System.out.print(agent_select.getUsername() + "\n");
-                            for(Ticket ticket_check: Tickets){
 
+                            for(Ticket ticket_check: Tickets){
                                 if(ticket_check.getTicket_responsable() == agent_select ){
-                                    System.out.printf("RESPONSABLE \n");
                                     ticket_pris_en_charge.add(ticket_check);
-                                } else if(ticket_check.getTicket_trace() == agent_select.getUsername()){
-                                    System.out.printf("OKOKOK \n");
-                                    ticket_resolu.add(ticket_check); // resolu
                                 }
+                                if(agent_select.getUsername().equals(ticket_check.getTicket_trace())){
+                                    ticket_resolu.add(ticket_check);
+                                }
+
                             }
                             request.setAttribute("ticket_pris_en_charge", ticket_pris_en_charge);
                             request.setAttribute("ticket_resolu", ticket_resolu);
@@ -248,7 +250,6 @@ public class Controleur extends HttpServlet {
             request.getRequestDispatcher("WEB-INF/home.jsp").forward(request,response);
         } else if(m.getUser_profil_id().equals("gestionaire")){
             request.setAttribute("list_agent", ((Gestionaire) m).getAgent_responsable());
-            request.setAttribute("applications_created", facade.getApplications());
             request.getRequestDispatcher("WEB-INF/gestionAgent.jsp").forward(request, response);
         }
         else if(m.getUser_profil_id().equals("client")){

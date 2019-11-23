@@ -42,8 +42,8 @@ public class Facade {
         Ticket t3 = new Ticket("tete","insa","title 3","13-06-2019","abc");
         Tickets.add(t3);
 
-        t1.setTicket_trace("tata");
-        t2.setTicket_trace("tata");
+//        t1.setTicket_trace("tata");
+//        t2.setTicket_trace("tata");
 
         Applications = new ArrayList<Application>();
 
@@ -87,17 +87,24 @@ public class Facade {
         return null;
     }
 
-    public void changeTicketResolu(Integer l,  String d, String commentaire, String nom){
-        for(Ticket t: Tickets){
-            if(t.getTicket_id().equals(l)){
-                t.setTicket_status(1);
-                t.setTicket_aut(false);
-                t.setTicket_date(d);
-                t.setTicket_desc(commentaire);
-                t.setTicket_responsable(null);
-                t.setTicket_trace(nom);
-            }
-        }
+    public void changeTicketResolu(Ticket ticketsolu, String d, String commentaire, String nom){
+//        for(Ticket t: Tickets){
+//            if(t.getTicket_id().equals(l)){
+//                t.setTicket_trace(nom);
+//                t.setTicket_status(1);
+//                t.setTicket_aut(false);
+//                t.setTicket_date(d);
+//                t.setTicket_desc(commentaire);
+//                t.setTicket_responsable(null);
+//            }
+//        }
+
+        ticketsolu.setTicket_trace(nom);
+        ticketsolu.setTicket_status(1);
+        ticketsolu.setTicket_aut(false);
+        ticketsolu.setTicket_date(d);
+        ticketsolu.setTicket_desc(commentaire);
+        ticketsolu.setTicket_responsable(null);
     }
 
     public Ticket findTicketByID(Integer l){

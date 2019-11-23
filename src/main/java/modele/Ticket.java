@@ -65,28 +65,21 @@ public class Ticket {
     }
 
     public void setTicket_responsable(Utilisateur ticket_responsable) {
-        if(!this.ticket_aut) { // check the ticket authentification: if ticket_aut = false , prendre en charge
-            this.ticket_responsable = ticket_responsable;
-            this.ticket_aut = true; // to block the another
-        }
-        else {
-            System.out.printf("APRES");
-            System.out.printf("\n");
-        }
+        this.ticket_responsable = ticket_responsable;
+        this.ticket_aut = true; // to block the another
     }
 
     public String getTicket_trace() {
         return ticket_trace;
     }
-
+    public String getTicket_appnom() {
+        return ticket_appnom;
+    }
     public void setTicket_trace(String ticket_trace) {
         this.ticket_trace = ticket_trace;
     }
 
-    public String getTicket_appnom() {
-        return ticket_appnom;
+    public void setTicket_id(Integer ticket_id) {
+        this.ticket_id = ticket_id;
     }
-
-
-
 }
