@@ -9,9 +9,9 @@ import java.util.Collection;
 
 public class Utilisateur {
 
-    private String username;//unique
+    private String username;// unique
     private String password;
-    private String user_profil_id;//Profil de l'utilisateur  que va le donner les autorisations
+    private String user_profil_id;// Profil de l'utilisateur que va le donner les autorisations
 
     private Collection<Utilisateur> responsable;
 
@@ -19,12 +19,11 @@ public class Utilisateur {
 
     // Constructeurs
     public Utilisateur(String username, String password, String user_profil_id) {
-        this.username=username;
-        this.password=password;
-        this.user_profil_id=user_profil_id;
+        this.username = username;
+        this.password = password;
+        this.user_profil_id = user_profil_id;
     }
     // Getters / setters
-
 
     public String getUsername() {
         return username;
@@ -46,6 +45,4 @@ public class Utilisateur {
         return user_profil_id;
     }
 
-
-}//Fin class
-
+}// Fin class

@@ -8,7 +8,7 @@ import java.util.Random;
 
 public class Projet {
 
-    private int proj_id ;
+    private int proj_id;
     private String proj_contribution;
     private String proj_desc;
     private Utilisateur proj_responsable;
@@ -16,7 +16,6 @@ public class Projet {
     private Collection<Utilisateur> Utilisateurs;
     private Collection<Application> Applications;
     Random rand = new Random();
-
 
     // Constructeurs
 

@@ -18,8 +18,8 @@ public class Ticket {
     private String ticket_client_creator;
     Random rand = new Random();
 
-
-    public Ticket(String ticket_client_creator, String ticket_appnom, String ticket_title, String ticket_date, String ticket_desc) {
+    public Ticket(String ticket_client_creator, String ticket_appnom, String ticket_title, String ticket_date,
+            String ticket_desc) {
         this.ticket_id = rand.nextInt(100);
         this.ticket_client_creator = ticket_client_creator;
         this.ticket_appnom = ticket_appnom;
@@ -40,7 +40,6 @@ public class Ticket {
     public Boolean getTicket_aut() {
         return ticket_aut;
     }
-
 
     public void setTicket_aut(Boolean ticket_aut) {
         this.ticket_aut = ticket_aut;
@@ -69,6 +68,7 @@ public class Ticket {
     public Integer getTicket_status() {
         return ticket_status;
     }
+
     public void setTicket_status(Integer ticket_status) {
         this.ticket_status = ticket_status;
     }
@@ -85,9 +85,11 @@ public class Ticket {
     public String getTicket_trace() {
         return ticket_trace;
     }
+
     public String getTicket_appnom() {
         return ticket_appnom;
     }
+
     public void setTicket_trace(String ticket_trace) {
         this.ticket_trace = ticket_trace;
     }
