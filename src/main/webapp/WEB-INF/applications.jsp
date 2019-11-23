@@ -19,8 +19,9 @@
     </center>
     <center>
         <form method="post" id="form">
-            Responsable de l'application : <input type="text" name="app_responsable" id="app_responsable"
-                value="${surnom}" /><br /><br />
+            Responsable de l'application :
+            <input type="text" name="app_responsable" id="app_responsable"
+                value="${surnom}" required/><br /><br />
             assigner au projet avec ID :
             <SELECT name="app_proj_id" size="1">
                 <c:forEach items="${projets_created}" var="projet">

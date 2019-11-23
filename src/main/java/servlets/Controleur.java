@@ -124,6 +124,7 @@ public class Controleur extends HttpServlet {
                 break;
 
             case "application":
+
                 Application(request, response);
                 break;
             case "createApplication":
