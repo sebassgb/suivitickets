@@ -53,6 +53,9 @@ public class Ticket {
         this.ticket_desc = ticket_desc;
     }
 
+    public Integer getTicket_status() {
+        return ticket_status;
+    }
     public void setTicket_status(Integer ticket_status) {
         this.ticket_status = ticket_status;
     }
@@ -79,6 +82,11 @@ public class Ticket {
     public void setTicket_trace(String ticket_trace) {
         this.ticket_trace = ticket_trace;
     }
+
+    public String getTicket_appnom() {
+        return ticket_appnom;
+    }
+
 
 
 }

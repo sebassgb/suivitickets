@@ -103,7 +103,6 @@ public class Controleur extends HttpServlet {
                             }
                             else {
                                     // PAS FAIT
-
                             }
                         } else {
                             Ticket ticket_liberer = facade.findTicketByID(Integer.parseInt(ticket_information));
@@ -159,14 +158,16 @@ public class Controleur extends HttpServlet {
                             ArrayList<Ticket> Tickets = facade.getTickets();
                             ArrayList<Ticket> ticket_pris_en_charge = new ArrayList<Ticket>();
                             ArrayList<Ticket> ticket_resolu = new ArrayList<Ticket>();
+                            System.out.print(agent_select.getUsername() + "\n");
                             for(Ticket ticket_check: Tickets){
-                                if( ticket_check.getTicket_trace() == agent_select.getUsername()){
+
+                                if(ticket_check.getTicket_responsable() == agent_select ){
+                                    System.out.printf("RESPONSABLE \n");
+                                    ticket_pris_en_charge.add(ticket_check);
+                                } else if(ticket_check.getTicket_trace() == agent_select.getUsername()){
+                                    System.out.printf("OKOKOK \n");
                                     ticket_resolu.add(ticket_check); // resolu
                                 }
-                                if( ticket_check.getTicket_responsable() == agent_select ){
-                                    ticket_pris_en_charge.add(ticket_check);
-                                }
-
                             }
                             request.setAttribute("ticket_pris_en_charge", ticket_pris_en_charge);
                             request.setAttribute("ticket_resolu", ticket_resolu);

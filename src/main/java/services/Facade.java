@@ -91,13 +91,11 @@ public class Facade {
         for(Ticket t: Tickets){
             if(t.getTicket_id().equals(l)){
                 t.setTicket_status(1);
+                t.setTicket_aut(false);
                 t.setTicket_date(d);
                 t.setTicket_desc(commentaire);
-                t.setTicket_responsable(findMembre(nom));
+                t.setTicket_responsable(null);
                 t.setTicket_trace(nom);
-            }
-            else{
-                continue;
             }
         }
     }
