@@ -27,16 +27,15 @@
         </select>
         <button type="submit" name="TODO" value="agent"> Submit </button>
     </form>
-    Tickets pris en charge:
+    Tickets pris en charge de ${agent_select_username}:
     <c:forEach items="${ticket_pris_en_charge}" var="ticket_pris">
         <li>${ticket_pris.getTicket_id()} ${ticket_pris.getTicket_appnom()}</li>
     </c:forEach>
     <br>
-    Tickets resolu:
+    Tickets resolu de ${agent_select_username}:
     <c:forEach items="${ticket_resolu}" var="ticket">
         <li>${ticket.getTicket_id()} ${ticket.getTicket_appnom()}</li>
     </c:forEach>
-
 
 
 </center>

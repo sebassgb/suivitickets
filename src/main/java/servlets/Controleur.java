@@ -173,6 +173,7 @@ public class Controleur extends HttpServlet {
                             }
                             request.setAttribute("ticket_pris_en_charge", ticket_pris_en_charge);
                             request.setAttribute("ticket_resolu", ticket_resolu);
+                            request.setAttribute("agent_select_username", agent_select_username);
                             versPage(request, response);
                         break;
                 case "gestionaire":
