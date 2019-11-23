@@ -41,8 +41,21 @@ public class Ticket {
         return ticket_aut;
     }
 
+
     public void setTicket_aut(Boolean ticket_aut) {
         this.ticket_aut = ticket_aut;
+    }
+
+    public String getTicket_date() {
+        return ticket_date;
+    }
+
+    public String getTicket_title() {
+        return ticket_title;
+    }
+
+    public String getTicket_desc() {
+        return ticket_desc;
     }
 
     public void setTicket_date(String ticket_date) {

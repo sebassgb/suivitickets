@@ -149,8 +149,8 @@ public class Controleur extends HttpServlet {
                             break;
 
                 case "ticketDepose":
-                    String clientActive= (String) request.getSession().getAttribute("courant");
-                    Utilisateur client=facade.findMembre(clientActive);
+                    String clientActive = (String) request.getSession().getAttribute("courant");
+                    Utilisateur client =facade.findMembre(clientActive);
                     request.setAttribute("tickets_deposes", facade.getTicketsClient(client.getUsername()));
                     request.getRequestDispatcher("WEB-INF/statusTicket.jsp").forward(request, response);
                     break;
