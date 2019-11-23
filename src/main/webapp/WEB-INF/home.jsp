@@ -38,10 +38,10 @@
                                 test="${pr.ticket_aut == true &&  pr.ticket_responsable.getUsername().equals(surnom)}">
                                 <form id="form" method="post">
                                     Ticket besoin resolu : <input class="envoyerTicket" type="text" name="surnom"
-                                        value="${surnom}" required> <input class="envoyerTicket" type="number"
+                                        value="${surnom}" required> <input class="envoyerTicket" type="hidden"
                                         name="ticket" placeholder="Id Ticket" value="${pr.ticket_id}" required /> <input
                                         class="envoyerTicket" type="date" name="date" placeholder="Date"
-                                        min="2019-01-01" max="12-31-2019" id="date_ticket" required /><input
+                                        min="2019-01-01" max="12-31-2019" id="date_ticket" required /> <input
                                         class="envoyerTicket" type="text" name="commentaire" placeholder="Commentaire"
                                         required />
 

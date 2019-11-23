@@ -35,4 +35,11 @@ public class Projet {
         this.proj_responsable = proj_responsable;
     }
 
+    public int getProj_id() {
+        return proj_id;
+    }
+
+    public void setProj_id(int proj_id) {
+        this.proj_id = proj_id;
+    }
 }
