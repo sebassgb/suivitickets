@@ -24,7 +24,7 @@
             assigner au projet avec ID :
             <SELECT name="app_proj_id" size="1">
                 <c:forEach items="${projets_created}" var="projet">
-                    <OPTION>${projet.getProj_id()}
+                    <OPTION value="${projet.getProj_id()}">${projet.getProj_id()} ${projet.getProj_responsable().getUsername()}
                 </c:forEach>
             </SELECT><br /><br />
             Nom de l'application : <input type="text" name="app_nom" id="app_nom" /><br /><br />
