@@ -107,3 +107,7 @@ li:before {
 	font-size: 0.8em;
 	color: white;		
 }
+
+h3 {
+    color: red!important;
+}

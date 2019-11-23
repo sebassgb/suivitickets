@@ -31,7 +31,7 @@
                     </c:if>
                 </c:forEach>
             </select>
-            <button type="submit" name="TODO" value="agent"> Submit </button>
+            <button class="gestionaire" type="submit" name="TODO" value="agent" > Chercher agent </button>
         </form>
         Tickets pris en charge de ${agent_select_username}:
         <c:forEach items="${ticket_pris_en_charge}" var="ticket_pris">

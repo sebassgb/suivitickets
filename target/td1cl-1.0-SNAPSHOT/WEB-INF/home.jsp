@@ -16,13 +16,13 @@
     <center>
         <h1 class="hit-the-floor">Bonjour à ${surnom}, vous êtes ${user_id}</h1>
     </center>
-    <center>
         <p class="hit-the-floor">Liste des tickets non résolus :</p>
         <ul>
             <c:forEach items="${responsable_ticket}" var="pr">
                 <c:if test="${pr.ticket_status == 0}">
-                    <li>ID Ticket: ${pr.ticket_id}, Nom de l'application: ${pr.ticket_appnom}, Client creer:
-                        ${pr.ticket_client_creator}
+                    <li><h3>ID Ticket : ${pr.ticket_id}</h3>
+                        <h3>Nom de l'application : ${pr.ticket_appnom}</h3>
+                        <h3>Client qui dépôt : ${pr.ticket_client_creator}</h3>
                         <form method="post">
                             <p>
                                 <select class="optionTicket" name="role">
@@ -54,7 +54,6 @@
             </c:forEach>
         </ul>
         </p>
-    </center>
 </body>
 
 </html>
