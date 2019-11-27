@@ -31,14 +31,14 @@
                     </c:if>
                 </c:forEach>
             </select>
-            <button class="gestionaire" type="submit" name="TODO" value="agent" > Chercher agent </button>
+            <button class="gestionaire" type="submit" name="TODO" value="agent" class="searchAgent"> Chercher agent </button>
         </form>
-        Tickets pris en charge de ${agent_select_username}:
+        Tickets prises en charge de : ${agent_select_username}
         <c:forEach items="${ticket_pris_en_charge}" var="ticket_pris">
             <li>${ticket_pris.getTicket_id()} ${ticket_pris.getTicket_appnom()}</li>
         </c:forEach>
         <br>
-        Tickets resolu de ${agent_select_username}:
+        Tickets résolus de : ${agent_select_username}
         <c:forEach items="${ticket_resolu}" var="ticket">
             <li>${ticket.getTicket_id()} ${ticket.getTicket_appnom()}</li>
         </c:forEach>

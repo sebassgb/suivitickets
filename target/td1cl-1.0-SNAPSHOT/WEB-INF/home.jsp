@@ -20,7 +20,7 @@
         <ul>
             <c:forEach items="${responsable_ticket}" var="pr">
                 <c:if test="${pr.ticket_status == 0}">
-                    <li><h3>ID Ticket : ${pr.ticket_id}</h3>
+                    <li><h3>ID du ticket : ${pr.ticket_id}</h3>
                         <h3>Nom de l'application : ${pr.ticket_appnom}</h3>
                         <h3>Client qui dépôt : ${pr.ticket_client_creator}</h3>
                         <form method="post">
@@ -29,7 +29,7 @@
                                     <option value="${pr.ticket_id}OK${surnom}"> Prendre en charge</option>
                                     <option value="${pr.ticket_id}"> Liberer</option>
                                 </select>
-                                <button type="submit" name="TODO" value="charge"> Submit </button>
+                                <button type="submit" name="TODO" value="charge"> Ok </button>
                             </p>
                         </form>
 
@@ -40,9 +40,6 @@
                                     Ticket besoin resolu : <input class="envoyerTicket" type="text" name="surnom"
                                         value="${surnom}" required> <input class="envoyerTicket" type="hidden"
                                         name="ticket" placeholder="Id Ticket" value="${pr.ticket_id}" required />
-<%--                                    <input--%>
-<%--                                        class="envoyerTicket" type="Date" name="date" placeholder="Date"--%>
-<%--                                        min="2019-01-01" max="12-31-2019" id="date_ticket" required />--%>
                                     <input type="date" name="date" id="date_ticket" value="2019-11-22" min="2019-01-01"
                                            max="12-31-2019" required>
                                     <input

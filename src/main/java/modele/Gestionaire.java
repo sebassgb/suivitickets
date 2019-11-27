@@ -7,7 +7,7 @@ public class Gestionaire extends Utilisateur {
         super(username, password, user_profil_id);
     }
 
-    public Collection<Utilisateur> agent_responsable;
+    public Collection<Utilisateur> agent_responsable;//chaque gestionaire a des agents
 
     public Collection<Utilisateur> getAgent_responsable() {
         return agent_responsable;

@@ -26,7 +26,7 @@
                 </c:forEach>
             </select>
             <br />
-            assigner au projet avec ID :
+            Assigner au projet avec ID :
             <SELECT name="app_proj_id" size="1">
                 <c:forEach items="${projets_created}" var="projet">
                     <OPTION value="${projet.getProj_id()}">${projet.getProj_id()} ${projet.getProj_responsable().getUsername()}
@@ -38,14 +38,13 @@
         </form>
     </center>
     <center>
-        Applications disponibles :<br /><br /><br /><br />
+        Applications disponibles :<br /><br /><br />
         <c:forEach items="${applications_created}" var="application">
-            <%--    <button class="logout">Supprimer</button><br/><br/>--%>
             Application dans le projet avec ID : <strong>${application.getApp_proj_id()}</strong><br /><br />
             Responsable de l'application :
             <strong>${application.getApp_responsable().getUsername()}</strong><br /><br />
             Nom de l'application : <strong>${application.getApp_nom()}</strong><br /><br />
-            ID de l'application : <strong>${application.getApp_id()}</strong><br /><br /><br /><br />
+            ID de l'application : <strong>${application.getApp_id()}</strong><br /><br /><br />
         </c:forEach>
     </center>
 </body>

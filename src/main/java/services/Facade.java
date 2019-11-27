@@ -15,6 +15,7 @@ public class Facade {
     private List<Utilisateur> Utilisateurs;
     private ArrayList<Ticket> Tickets;
     private ArrayList<Application> Applications;
+
     public Facade() {
     }
 
@@ -34,20 +35,17 @@ public class Facade {
         Utilisateurs.add(m5);
 
         Tickets = new ArrayList<Ticket>();
-        Ticket t1 = new Ticket("tete", "voiture", "title 1", "13-03-2019", "abc");
+        Ticket t1 = new Ticket("tete", "voiture", "title 1", "2019-06-12", "abc");
         Tickets.add(t1);
-        Ticket t2 = new Ticket("tete", "plane", "title 2", "13-04-2019", "abc");
+        Ticket t2 = new Ticket("tete", "plane", "title 2", "2019-07-05", "abc");
         Tickets.add(t2);
-        Ticket t3 = new Ticket("tete", "insa", "title 3", "13-06-2019", "abc");
+        Ticket t3 = new Ticket("tete", "insa", "title 3", "2019-06-19", "abc");
         Tickets.add(t3);
-
-        // t1.setTicket_trace("tata");
-        // t2.setTicket_trace("tata");
 
         Applications = new ArrayList<Application>();
 
-        Application a1 = new Application("Projet d'option", "3", m4, Tickets);
-        Application a2 = new Application("Projet d'option2", "4", m4, Tickets);
+        Application a1 = new Application("Application 1", "3", m4, Tickets);
+        Application a2 = new Application("Application 2", "4", m4, Tickets);
 
         Applications.add(a1);
         Applications.add(a2);
@@ -63,7 +61,6 @@ public class Facade {
         m5.setResponsable_ticket(Tickets);
 
         m1.setAgent_responsable(Utilisateurs);
-        // // Client apres;
     }
 
     //
@@ -88,7 +85,7 @@ public class Facade {
 
     public void changeTicketResolu(Ticket ticketsolu, String d, String commentaire, String nom) {
         ticketsolu.setTicket_trace(nom);
-        ticketsolu.setTicket_status(1);
+        ticketsolu.setTicket_status(1);//"0" non résolue, "1" résolue
         ticketsolu.setTicket_aut(false);
         ticketsolu.setTicket_date_resolution(d);
         ticketsolu.setTicket_commentaire(commentaire);
@@ -112,7 +109,7 @@ public class Facade {
         }
     }
 
-    public void changeTicketPrendreEnCharge(Ticket ticket_responsable, Utilisateur responsable) {
+    public void changeTicketPrendreEnCharge(Ticket ticket_responsable, Utilisateur responsable) {//vérifier si le ticket a déjà été prise en charge
         ticket_responsable.setTicket_responsable(responsable);
     }
 
@@ -212,13 +209,13 @@ public class Facade {
         Utilisateurs.remove(utilisateursupprime);
     }
 
-    public ArrayList<Utilisateur> getAdmins(){
+    public ArrayList<Utilisateur> getAdmins() {
         ArrayList<Utilisateur> Admins = new ArrayList<Utilisateur>();
-        for (Utilisateur u: Utilisateurs){
-            if(u.getUser_profil_id().equals("admin")){
+        for (Utilisateur u : Utilisateurs) {
+            if (u.getUser_profil_id().equals("admin")) {
                 Admins.add(u);
             }
         }
-        return  Admins;
+        return Admins;
     }
 }

@@ -7,23 +7,23 @@ import java.util.Random;
 
 public class Ticket {
 
-    private Integer ticket_id;
-    private String ticket_appnom;
+    private Integer ticket_id;//
+    private String ticket_appnom;//le ticket est crée pour une appli qui a une problème ici on garde le nom de cette appli
     private Boolean ticket_aut = false; // false = permettre de prendre en charge
     private String ticket_date;
     private String ticket_title;
-    private String ticket_trace;
-    private String ticket_desc;
+    private String ticket_trace;//ici sert pour savoir qui a résolu le ticket meme si l'agent n'existe plus
+    private String ticket_desc;//description du ticket
     private Integer ticket_status; // 0 = Non resolu, 1 = resolu
-    private Utilisateur ticket_responsable;
-    private String ticket_client_creator;
-    private String ticket_commentaire;
-    private String ticket_date_resolution;
+    private Utilisateur ticket_responsable;//quel agent est réponsable du ticket
+    private String ticket_client_creator;//pour savoir quel client a crée le ticket
+    private String ticket_commentaire;//quand l'agent a résolue le ticket il va laisser un commentaire
+    private String ticket_date_resolution;//quand l'agent a résolue le ticket il va laisser une date de résolution
     Random rand = new Random();
 
     public Ticket(String ticket_client_creator, String ticket_appnom, String ticket_title, String ticket_date,
             String ticket_desc) {
-        this.ticket_id = rand.nextInt(100);
+        this.ticket_id = rand.nextInt(100);//on va créer l'id de façon aléatoire
         this.ticket_client_creator = ticket_client_creator;
         this.ticket_appnom = ticket_appnom;
         this.ticket_date = ticket_date;

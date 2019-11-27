@@ -11,7 +11,7 @@ public class Utilisateur {
 
     private String username;// unique
     private String password;
-    private String user_profil_id;// Profil de l'utilisateur que va le donner les autorisations
+    private String user_profil_id;// Profil de l'utilisateur que va le donner des autorisations
 
     private Collection<Utilisateur> responsable;
 

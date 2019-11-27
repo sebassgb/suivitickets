@@ -20,9 +20,9 @@ public class Projet {
     // Constructeurs
 
     public Projet(Utilisateur proj_responsable, Collection<Application> Application) {
-        this.proj_id = rand.nextInt(100);
-        this.proj_responsable = proj_responsable;
-        this.Applications = Application;
+        this.proj_id = rand.nextInt(100);//on va créer l'id du proj de façon aléatoire
+        this.proj_responsable = proj_responsable;//qui est le résponsable du projet
+        this.Applications = Application;//chaque projet contient une collection des applications
     }
 
     public Utilisateur getProj_responsable() {

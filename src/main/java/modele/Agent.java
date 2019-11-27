@@ -8,11 +8,11 @@ public class Agent extends Utilisateur {
     }
 
     private Collection<Ticket> responsable_ticket;
-
+        //fonction pour obtenir qui a pris en charge le ticket
     public Collection<Ticket> getResponsable_ticket() {
         return responsable_ticket;
     }
-
+    //fonction pour assigner le person qui prendrera le ticket
     public void setResponsable_ticket(Collection<Ticket> responsable_ticket) {
         this.responsable_ticket = responsable_ticket;
     }

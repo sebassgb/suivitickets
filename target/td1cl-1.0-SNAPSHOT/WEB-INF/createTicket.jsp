@@ -15,6 +15,7 @@
 
     <center>
         <h1 class="hit-the-floor">Créer un ticket de maintenance</h1>
+        <h3 class="hit-the-floor">comme ${surnom}, vous êtes ${user_id}</h3>
     </center>
     <center>
         <form method="post" id="form">
