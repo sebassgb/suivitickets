@@ -75,7 +75,11 @@ public class Controleur extends HttpServlet {
             // deja connecte, donc on garde le session
             String todo = request.getParameter("TODO");
             switch (todo) {
-                case "resolu":
+
+                // ===============================
+                // >>>>>>>>>>> Agent <<<<<<<<<<<<<
+                // ===============================
+                case "resolu": // Change l'etat de ticket non-resolu a resolu
                     Integer t = Integer.parseInt(request.getParameter("ticket"));
                     String d = request.getParameter("date").toString();
                     String commentaire = request.getParameter("commentaire");
@@ -84,7 +88,7 @@ public class Controleur extends HttpServlet {
                     facade.changeTicketResolu(ticketResolu, d, commentaire, nomAgentTrace);
                     versPage(request, response);
                     break;
-                case "charge":
+                case "charge": // Un agent peut prendre en charge un ticket, des autres ne peuvent pas prend en charge ce ticket.
                     String ticket_information = request.getParameter("role");
                     if (ticket_information.contains("OK")) {
                         String[] split = ticket_information.split("OK");
@@ -103,6 +107,12 @@ public class Controleur extends HttpServlet {
                     }
                     versPage(request, response);
                     break;
+                // ================ END ===================
+
+                // ===============================
+                // >>>>>>>>>>> Client <<<<<<<<<<<<
+                // ===============================
+
                 // Function for create a new ticket for the client
                 case "createTicket":
                     String date_ticket = request.getParameter("date_ticket").toString();
@@ -144,13 +154,16 @@ public class Controleur extends HttpServlet {
                     request.getRequestDispatcher("WEB-INF/statusTicket.jsp").forward(request, response);
                     break;
 
-                case "agent":
+                // ===============================
+                // >>>>>>> GestionAgent <<<<<<<<<<
+                // ===============================
+
+                case "agent": // afficher tous des tickets d'un argent qui pris en charge et a ete resolu
                     String agent_select_username = request.getParameter("agent_select");
                     Utilisateur agent_select = facade.findMembre(agent_select_username);
                     ArrayList<Ticket> Tickets = facade.getTickets();
                     ArrayList<Ticket> ticket_pris_en_charge = new ArrayList<Ticket>();
                     ArrayList<Ticket> ticket_resolu = new ArrayList<Ticket>();
-
                     for (Ticket ticket_check : Tickets) {
                         if (ticket_check.getTicket_responsable() == agent_select) {
                             ticket_pris_en_charge.add(ticket_check);
@@ -158,14 +171,13 @@ public class Controleur extends HttpServlet {
                         if (agent_select.getUsername().equals(ticket_check.getTicket_trace())) {
                             ticket_resolu.add(ticket_check);
                         }
-
                     }
                     request.setAttribute("ticket_pris_en_charge", ticket_pris_en_charge);
                     request.setAttribute("ticket_resolu", ticket_resolu);
                     request.setAttribute("agent_select_username", agent_select_username);
                     versPage(request, response);
                     break;
-                case "gestionaire":
+                case "gestionaire": // Afficher un page pour creer un projet
                     String l = (String) request.getSession().getAttribute("courant");
                     Utilisateur m = facade.findMembre(l);
                     request.setAttribute("surnom", m.getUsername());
@@ -176,39 +188,43 @@ public class Controleur extends HttpServlet {
                     request.getRequestDispatcher("WEB-INF/gestionaire.jsp").forward(request, response);
                     break;
 
-                case "creerprojet":
+                case "creerprojet": // Implementation la fonction "creer un projet"
                     String resp_proj = request.getParameter("resp_proj");
                     String desc_proj = request.getParameter("desc_proj");
                     String[] application_select = request.getParameterValues("application_select");
                     facade.creerProjet(resp_proj, desc_proj, application_select);
                     versPage(request, response);
                     break;
-                case "admin":
+
+                // ===============================
+                // >>>>>>>>>>> Admin <<<<<<<<<<<<<
+                // ===============================
+
+                case "admin": // Reload le page de admin
                     versPage(request, response);
                     break;
-                case "autorisation":
+                case "autorisation": // Changement le role d'utilisateur selecté
                     String AutorisationUtilisateur = request.getParameter("role_change");
                     String[] split = AutorisationUtilisateur.split("\\+");
                     Utilisateur utilisateur = facade.findMembre(split[0]);
                     facade.changeRoleUtilisateur(utilisateur, split[1]);
                     versPage(request, response);
                     break;
-                case "supprimerUtilisateur":
+                case "supprimerUtilisateur": // On peut supprimer l'utilisateur selecté
                     String getUtilisateur = request.getParameter("role_change");
                     String[] getNameUtilisateur = getUtilisateur.split("\\+");
                     Utilisateur Utilisateursupprime = facade.findMembre(getNameUtilisateur[0]);
                     facade.supprimerUtilisateur(Utilisateursupprime);
                     versPage(request, response);
                     break;
-
-                case "Utilisateur":
+                case "Utilisateur": //  Charger le page pour creer un nouveau utilisateur
                     String courant = (String) request.getSession().getAttribute("courant");
                     Utilisateur p = facade.findMembre(courant);
                     request.setAttribute("surnom", p.getUsername());
                     request.setAttribute("user_id", p.getUser_profil_id());
                     request.getRequestDispatcher("WEB-INF/admin.jsp").forward(request, response);
                     break;
-                case "createUtilisateur":
+                case "createUtilisateur": // Implementation la fonctional qui cree un nouveau utilisateur
                     String usernameNew = request.getParameter("username");
                     String passwordNew = request.getParameter("password");
                     String user_profil_id = request.getParameter("user_profil_id");
@@ -216,6 +232,7 @@ public class Controleur extends HttpServlet {
                     request.setAttribute("isSucces", isSucces);
                     request.getRequestDispatcher("WEB-INF/admin.jsp").forward(request, response);
                     break;
+                // ============ END ==========
                 default:
                     versPage(request, response);
             }
