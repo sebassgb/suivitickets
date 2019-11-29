@@ -39,8 +39,10 @@ public class Facade {
         Tickets.add(t1);
         Ticket t2 = new Ticket("tete", "plane", "title 2", "2019-07-05", "abc");
         Tickets.add(t2);
-        Ticket t3 = new Ticket("tete", "insa", "title 3", "2019-06-19", "abc");
+        Ticket t3 = new Ticket("tete", "insa","title 3", "2019-06-19", "abc");
         Tickets.add(t3);
+        Ticket t4 = new Ticket("tete", "resolu","title 4", "2019-06-20", "abc");
+        Tickets.add(t4);
 
         Applications = new ArrayList<Application>();
 
@@ -59,8 +61,8 @@ public class Facade {
         p1.setProj_responsable(m1); // gestionaire
         m2.setResponsable_ticket(Tickets);
         m5.setResponsable_ticket(Tickets);
-
         m1.setAgent_responsable(Utilisateurs);
+        changeTicketResolu(t4, "2019-06-21","bcd","tata");
     }
 
     //
@@ -85,7 +87,7 @@ public class Facade {
 
     public void changeTicketResolu(Ticket ticketsolu, String d, String commentaire, String nom) {
         ticketsolu.setTicket_trace(nom);
-        ticketsolu.setTicket_status(1);//"0" non résolue, "1" résolue
+        ticketsolu.setTicket_status(1);// "0" non résolue, "1" résolue
         ticketsolu.setTicket_aut(false);
         ticketsolu.setTicket_date_resolution(d);
         ticketsolu.setTicket_commentaire(commentaire);
@@ -109,7 +111,9 @@ public class Facade {
         }
     }
 
-    public void changeTicketPrendreEnCharge(Ticket ticket_responsable, Utilisateur responsable) {//vérifier si le ticket a déjà été prise en charge
+    public void changeTicketPrendreEnCharge(Ticket ticket_responsable, Utilisateur responsable) {// vérifier si le
+                                                                                                 // ticket a déjà été
+                                                                                                 // prise en charge
         ticket_responsable.setTicket_responsable(responsable);
     }
 
